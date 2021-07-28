@@ -1,3 +1,24 @@
 .profile-dropdown {
-  position: absolute;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.nav-container {
+  height: 64px;
+  background-color: #fff;
+  /* box-sizing: border-box; */
+  box-shadow: 0 5px 6px 0 rgb(50 50 50 / 26%);
+  display: block;
+}
+
+.nav-ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-li {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 40px;
 }
