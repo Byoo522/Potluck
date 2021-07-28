@@ -1,15 +1,16 @@
 const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
-const csurf = require("csurf");
-const helmet = require("helmet");
-const cookieParser = require("cookie-parser");
+const morgan = require("morgan"); // logging info about server requests/responses
+const cors = require("cors"); // CORS
+const csurf = require("csurf"); // CSRF protection
+const helmet = require("helmet"); // security middleware
+const cookieParser = require("cookie-parser"); // parsing cookies from requests
 const { ValidationError } = require("sequelize");
 
 const routes = require("./routes");
 const { environment } = require("./config");
 const isProduction = environment === "production";
 
+// initialize express app
 const app = express();
 
 app.use(morgan("dev"));
