@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
+
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
@@ -17,25 +18,31 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup" className='nav-li'>Sign Up</NavLink>
+        <NavLink to="/signup" className='nav-li black'>Signup</NavLink>
       </>
     );
   }
 
   return (
     <div className='nav-container'>
-      <ul className='nav-ul'>
-        <li>
-          <NavLink exact to="/" className='nav-li'>Home</NavLink>
+      <div className='brand-wrapper'>
+        <img src={'pot-icon.jpg'} className='nav-logo'></img>
+        <h1 className='brand-name red'>Potluck</h1>
+      </div>
+      <div className='nav-wrapper'>
+        <ul className='nav-ul'>
+          <li>
+            <NavLink exact to="/" className='nav-li black'>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/event" className='nav-li black'>Events</NavLink>
+          </li>
+          <li>
+            <NavLink to="/search" className='nav-li black'>Search</NavLink>
+          </li>
           {isLoaded && sessionLinks}
-        </li>
-        <li>
-          <NavLink to="/event" className='nav-li'>Events</NavLink>
-        </li>
-        <li>
-          <NavLink to="/search" className='nav-li'>Search</NavLink>
-        </li>
-      </ul>
+        </ul>
+      </div>
     </div>
   );
 }
