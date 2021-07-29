@@ -8,6 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Users' }
+      },
+      eventId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Events' }
+      },
       content: {
         allowNull: false,
         type: Sequelize.TEXT

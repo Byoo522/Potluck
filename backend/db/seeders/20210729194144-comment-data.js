@@ -8,6 +8,8 @@ module.exports = {
       */
 
     return queryInterface.bulkInsert('Comments', [{
+      userId: 1,
+      eventId: 1,
       content: 'This graduation party is going to be online?'
     }], {});
   },

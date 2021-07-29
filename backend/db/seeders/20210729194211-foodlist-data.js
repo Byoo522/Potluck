@@ -8,6 +8,7 @@ module.exports = {
       */
 
    return queryInterface.bulkInsert('Foodlists', [{
+     eventId: 1,
      type: 'Beverage',
      description: 'Beer'
    }], {});
