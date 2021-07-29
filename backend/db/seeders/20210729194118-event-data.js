@@ -7,6 +7,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
   */
     return queryInterface.bulkInsert('Events', [{
+      userId: 1,
       title: 'a/A March 2021 Graduation',
       max_guests: 100,
       location: 'Main Zoom Room',

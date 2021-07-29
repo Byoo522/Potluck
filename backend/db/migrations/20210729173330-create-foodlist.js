@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      eventId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Events' }
+      },
       type: {
         allowNull: false,
         type: Sequelize.STRING
