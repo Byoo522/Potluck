@@ -22,12 +22,14 @@ router.get('/', restoreUser, asyncHandler(async (req, res) => {
 
 // create new event
 router.post('/', asyncHandler(async (req, res) => {
-  const { userId, title, max_guest, location, date, time, description } = req.body;
-  const newEvent = await Event.create({ userId, title, max_guest, location, date, time, description })
+  const { userId, title, max_guests, location, date, time, description } = req.body;
+  const newEvent = await Event.create({ userId, title, max_guests, location, date, time, description })
 
   return res.json({ newEvent })
 }))
 
+
+// Delete event
 
 
 
