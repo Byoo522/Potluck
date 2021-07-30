@@ -4,23 +4,29 @@ const router = express.Router();
 // need to import csurf and plug into calls
 const { restoreUser, requireAuth } = require('../../utils/auth');
 
-const { Event } = require('../../db/models')
+const { Event } = require('../../db/models');
+const { db } = require('../../config');
 
-// get all events
+// GET ALL events
 router.get('/', restoreUser, asyncHandler(async (req, res) => {
   const events = await Event.findAll();
-
   res.json(events);
 }))
 
-// get all events for logged user
-// router.get('/', restoreUser, asyncHandler(async (req, res) => {
-//   const events = await Event.findAll();
+// GET ALL events for LOGGED IN USER
+router.get('/', restoreUser, asyncHandler(async (req, res) => {
+  const events = await Event.findAll();
+  res.json(events);
+}))
 
-//   res.json(events);
-// }))
+// GET ONE events for logged user
+router.get('/:id', restoreUser, asyncHandler(async (req, res) => {
+  const eventId = parseInt(req.params.id);
+  const event = await Event.findByPk(eventId);
+  res.json(event);
+}))
 
-// create new event
+// POST new event
 router.post('/', asyncHandler(async (req, res) => {
   const { userId, title, max_guests, location, date, time, description } = req.body;
   const newEvent = await Event.create({ userId, title, max_guests, location, date, time, description })
@@ -28,9 +34,26 @@ router.post('/', asyncHandler(async (req, res) => {
   return res.json({ newEvent })
 }))
 
+// EDIT post
+router.put('/:id', asyncHandler(async (req, res) => {
+  const eventId = parseInt(req.params.id);
+  const event = await db.Event.findByPk(eventId);
+  if (event) {
+    const { title, max_guests, location, date, time, description } = req.body;
+    await event.update({ title, max_guests, location, date, time, description });
+    res.json({ event })
+  }
+}))
 
-// Delete event
-
+// DELETE event
+router.delete('/:id', asyncHandler(async (req, res) => {
+  const eventId = parseInt(req.params.id);
+  const event = await db.Event.findByPk(eventId);
+  if (event) {
+    await event.destroy();
+    return res.send('Successfully Deleted Event')
+  }
+}))
 
 
 module.exports = router;
