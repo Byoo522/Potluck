@@ -13,10 +13,19 @@ router.get('/', restoreUser, asyncHandler(async (req, res) => {
   res.json(events);
 }))
 
+// get all events for logged user
+// router.get('/', restoreUser, asyncHandler(async (req, res) => {
+//   const events = await Event.findAll();
+
+//   res.json(events);
+// }))
+
 // create new event
 router.post('/', asyncHandler(async (req, res) => {
   const { userId, title, max_guest, location, date, time, description } = req.body;
+  const newEvent = await Event.create({ userId, title, max_guest, location, date, time, description })
 
+  return res.json({ newEvent })
 }))
 
 
