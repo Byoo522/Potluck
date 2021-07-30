@@ -5,7 +5,7 @@ const router = express.Router();
 const { restoreUser, requireAuth } = require('../../utils/auth');
 
 const { Event } = require('../../db/models');
-const { db } = require('../../config');
+// const { db } = require('../../db');
 
 // GET ALL events
 router.get('/', restoreUser, asyncHandler(async (req, res) => {
@@ -36,8 +36,8 @@ router.post('/', asyncHandler(async (req, res) => {
 
 // EDIT post
 router.put('/:id', asyncHandler(async (req, res) => {
-  const eventId = parseInt(req.params.id);
-  const event = await db.Event.findByPk(eventId);
+  const eventId = parseInt(req.params.id, 10);
+  const event = await Event.findByPk(eventId);
   if (event) {
     const { title, max_guests, location, date, time, description } = req.body;
     await event.update({ title, max_guests, location, date, time, description });
@@ -48,7 +48,7 @@ router.put('/:id', asyncHandler(async (req, res) => {
 // DELETE event
 router.delete('/:id', asyncHandler(async (req, res) => {
   const eventId = parseInt(req.params.id);
-  const event = await db.Event.findByPk(eventId);
+  const event = await Event.findByPk(eventId);
   if (event) {
     await event.destroy();
     return res.send('Successfully Deleted Event')
