@@ -13,7 +13,7 @@ router.get('/', restoreUser, asyncHandler(async (req, res) => {
   res.json(events);
 }))
 
-// GET ALL events for LOGGED IN USER
+// GET ALL events for LOGGED IN USER - remember to add in requireAuth
 router.get('/', restoreUser, asyncHandler(async (req, res) => {
   const events = await Event.findAll();
   res.json(events);
