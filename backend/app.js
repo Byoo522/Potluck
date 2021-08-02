@@ -28,7 +28,7 @@ app.use(helmet({
   contentSecurityPolicy: false
 }));
 
-// Set the _csrf token and create req.csrfToken method
+// Set the _csrf token and create req.csrfToken method - COMMENT OUT TO TEST BACKEND WITHOUT INVALID TOKEN ERROR
 app.use(
   csurf({
     cookie: {
