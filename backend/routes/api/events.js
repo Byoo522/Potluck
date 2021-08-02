@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 // need to import csurf and plug into calls
+
 const { restoreUser, requireAuth } = require('../../utils/auth');
 
 const { Event } = require('../../db/models');
