@@ -1,5 +1,6 @@
 // import hooks from 'react'
 // import hooks from 'react-redux'
+import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import thunk creator
@@ -13,9 +14,10 @@ const EventPage = () => {
   useEffect(() => {
     dispatch(getEvents());
   }, [dispatch])
+
   return (
     <div className='form-wrapper'>
-      <table>
+      <table className='event-form'>
         <thead>
           <tr>
             <th>Title</th>
@@ -25,6 +27,8 @@ const EventPage = () => {
             <th>Time</th>
             <th>Description</th>
           </tr>
+        </thead>
+        <tbody>
           {events && events.map((event) => (
             <tr key={event.id}>
               <td>{event.title}</td>
@@ -37,13 +41,13 @@ const EventPage = () => {
               <button className='delete-btn red-bg yellow'>Delete</button>
             </tr>
           ))}
-        </thead>
-        <tbody>
+          {/* <NavLink to='event/new'>
+          </NavLink> */}
+          <a href='/event/new'>
+            <button className='create-event-btn yellow-bg red'>Create Event</button>
+          </a>
         </tbody>
       </table>
-      <a href='/new'>
-        <button className='create-event-btn yellow-bg red'>Create Event</button>
-      </a>
     </div>
   )
 }

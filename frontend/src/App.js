@@ -13,7 +13,7 @@ import Navigation from './components/Navigation';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -32,7 +32,7 @@ function App() {
           <Route path='/events'>
             <EventPage />
           </Route>
-          <Route path='/events/new'>
+          <Route exact path='/event/new'>
             <EventFormPage />
           </Route>
         </Switch>

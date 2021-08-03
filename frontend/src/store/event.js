@@ -35,8 +35,8 @@ export const getEvents = () => async (dispatch) => {
 };
 
 export const createEvent = (data) => async (dispatch) => {
-  const res = await csrfFetch(`api/events/new`, {
-    method: ['POST'],
+  const res = await csrfFetch(`api/events`, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -44,8 +44,10 @@ export const createEvent = (data) => async (dispatch) => {
   });
 
   if (res.ok) {
+    console.log('res is okay')
     const event = await res.json();
     dispatch(addEvent(event))
+    return res
   }
 }
 
