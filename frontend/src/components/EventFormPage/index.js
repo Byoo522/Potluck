@@ -32,7 +32,7 @@ function EventFormPage() {
       time,
       description,
     };
-    const event = await dispatch(eventActions.createEvent(payload));
+    const event = await dispatch(createEvent(payload));
     if (event) {
       history.push('api/events')
     }
@@ -61,4 +61,4 @@ function EventFormPage() {
 }
 
 
-export default createEvent;
+export default EventFormPage;

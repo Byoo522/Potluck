@@ -15,3 +15,15 @@ body {
 .black {
   color: #27251F;
 }
+
+.yellow-bg {
+  background-color: #FFC72C;
+}
+
+.red-bg {
+  background-color: #DA291C;
+}
+
+.black-bg {
+  background-color: #27251F;
+}
