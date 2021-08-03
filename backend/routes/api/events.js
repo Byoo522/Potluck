@@ -31,7 +31,7 @@ router.get('/:id', restoreUser, asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async (req, res) => {
   const { userId, title, max_guests, location, date, time, description } = req.body;
   const newEvent = await Event.create({ userId, title, max_guests, location, date, time, description })
-
+  console.log('This is the newEvent: ', newEvent);
   return res.json({ newEvent })
 }))
 

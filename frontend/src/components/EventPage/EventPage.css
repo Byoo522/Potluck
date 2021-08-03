@@ -1,0 +1,23 @@
+.form-wrapper {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 3rem;
+}
+
+.event-form {
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.edit-btn {
+
+}
+
+.delete-btn {
+
+}
+
+.create-event-btn {
+
+}

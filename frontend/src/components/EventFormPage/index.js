@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
-import { createEvent, eventActions } from "../../store/event";
+import { createEvent, getEvents } from "../../store/event";
 import { useDispatch, useSelector } from "react-redux";
 
 
 function EventFormPage() {
+  const userId = useSelector(state => state?.session.user.id)
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
@@ -25,6 +26,7 @@ function EventFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
+      userId,
       title,
       max_guests,
       location,
@@ -32,9 +34,11 @@ function EventFormPage() {
       time,
       description,
     };
-    const event = await dispatch(eventActions.createEvent(payload));
+
+    const event = await dispatch(createEvent(payload));
+    dispatch(getEvents());
     if (event) {
-      history.push('api/events')
+      history.push('/events')
     }
   }
 
@@ -49,16 +53,41 @@ function EventFormPage() {
           value={title}
           onChange={addTitle} />
         <input
+          type="date"
+          placeholder="Date"
+          required
+          value={date}
+          onChange={addDate} />
+        <input
+          type="time"
+          placeholder="Time"
+          required
+          value={time}
+          onChange={addTime} />
+        <input
           type="number"
           placeholder="Max Number of Guests"
           min="1"
           required
           value={max_guests}
           onChange={addMax_Guests} />
+        <input
+          type="text"
+          placeholder="Location"
+          min="1"
+          required
+          value={location}
+          onChange={addLocation} />
+        <input
+          type="text"
+          placeholder="Description"
+          value={description}
+          onChange={addDescription} />
+        <button type='submit'>Create</button>
       </form>
     </div>
   )
 }
 
 
-export default createEvent;
+export default EventFormPage;
