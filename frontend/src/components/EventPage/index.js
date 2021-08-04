@@ -1,20 +1,34 @@
 // import hooks from 'react'
 // import hooks from 'react-redux'
 import { NavLink, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import thunk creator
-import { getEvents, UnloadEvents } from "../../store/event";
+import eventsReducer, { getEvents, UnloadEvents, removeEvent } from "../../store/event";
 import './EventPage.css';
+import { csrfFetch } from "../../store/csrf";
 
 const EventPage = () => {
   const dispatch = useDispatch();
   const events = useSelector((state) => Object.values(state.events));
+  const [allEvents, setAllEvents] = useState(events)
+  const userId = useSelector((state) => state.session.user.id);
 
   useEffect(() => {
     dispatch(getEvents());
-    return () => dispatch(UnloadEvents());
+    // return () => dispatch(UnloadEvents());
   }, [])
+
+  useEffect(() => {
+    setAllEvents(events)
+    // return () => dispatch(UnloadEvents());
+  }, [events])
+
+  const handleDelete = (id) => {
+    dispatch(removeEvent(userId, id));
+    setAllEvents(events);
+  }
+
 
   return (
     <div className='form-wrapper'>
@@ -30,26 +44,24 @@ const EventPage = () => {
           </tr>
         </thead>
         <tbody>
-          {events && events.map((event) => (
-            <tr key={event.id}>
-              <td>{event.title}</td>
-              <td>{event.max_guests}</td>
-              <td>{event.location}</td>
-              <td>{event.date}</td>
-              <td>{event.time}</td>
-              <td>{event.description}</td>
+          {allEvents && allEvents.map((event) => (
+            <tr key={event?.id}>
+              <td>{event?.title}</td>
+              <td>{event?.max_guests}</td>
+              <td>{event?.location}</td>
+              <td>{event?.date}</td>
+              <td>{event?.time}</td>
+              <td>{event?.description}</td>
               <button className='edit-btn yellow-bg red'>Edit</button>
-              <button className='delete-btn red-bg yellow'>Delete</button>
+              <button className='delete-btn red-bg yellow' onClick={() => handleDelete(event?.id)}>Delete</button>
             </tr>
           ))}
-          {/* <NavLink to='event/new'>
-          </NavLink> */}
           <Link to='/event/new'>
             <button className='create-event-btn yellow-bg red'>Create Event</button>
           </Link>
         </tbody>
       </table>
-    </div>
+    </div >
   )
 }
 

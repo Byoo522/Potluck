@@ -22,7 +22,7 @@ const editEvent = (event) => ({
   event,
 })
 
-const removeEvent = (event) => ({
+const deleteEvent = (event) => ({
   type: REMOVE_EVENT,
   event,
 })
@@ -57,16 +57,27 @@ export const createEvent = (data) => async (dispatch) => {
   if (res.ok) {
     console.log('res is okay')
     const event = await res.json();
-    dispatch(addEvent(event))
+    dispatch(addEvent(event.newEvent))
     return res
   }
 }
 
-export const removeWatch = (eventId) => async (dispatch) => {
-  const res = await fetch(`/api/events/${eventId}`, { method: 'DELETE' })
+export const removeEvent = (userId, eventId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/events/delete/${eventId}/users/${userId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
+
   if (res.ok) {
     const data = await res.json();
-    dispatch(setEvent(data))
+    if (data.errors) {
+      return data.errors
+    } else {
+      dispatch(setEvent(data.events))
+    }
+    return res
   }
 }
 
@@ -81,6 +92,7 @@ const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_EVENT:
       const allEvents = {};
+      console.log(action.events)
       action.events.forEach((event) => {
         // normalizing event
         allEvents[event.id] = event;
@@ -94,15 +106,18 @@ const eventsReducer = (state = initialState, action) => {
     //   }
     case ADD_EVENT:
       return { ...state, [action.event.id]: action.event }
-    // case REMOVE_WATCH:
-    //   return { ...state, events: action.payload }
-    case UNLOAD_EVENTS:
-      return {
-        ...initialState,
-        all: {
-          ...initialState.all
-        }
-      }
+    case REMOVE_EVENT:
+      // need to remove the event here
+      // const eventState = state.events
+      return { ...state, events: action.payload }
+
+    // case UNLOAD_EVENTS:
+    //   return {
+    //     ...initialState,
+    //     all: {
+    //       ...initialState.all
+    //     }
+    //   }
     default:
       return state;
   }

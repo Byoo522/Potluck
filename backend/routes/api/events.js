@@ -6,6 +6,7 @@ const router = express.Router();
 const { restoreUser, requireAuth } = require('../../utils/auth');
 
 const { Event } = require('../../db/models');
+const { Events } = require('pg');
 // const { db } = require('../../db');
 
 // GET ALL events
@@ -31,7 +32,6 @@ router.get('/:id', restoreUser, asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async (req, res) => {
   const { userId, title, max_guests, location, date, time, description } = req.body;
   const newEvent = await Event.create({ userId, title, max_guests, location, date, time, description })
-  console.log('This is the newEvent: ', newEvent);
   return res.json({ newEvent })
 }))
 
@@ -47,12 +47,17 @@ router.put('/:id', asyncHandler(async (req, res) => {
 }))
 
 // DELETE event
-router.delete('/:id', asyncHandler(async (req, res) => {
+router.delete('/delete/:id/users/:userId', asyncHandler(async (req, res) => {
   const eventId = parseInt(req.params.id);
+  const usrId = parseInt(req.params.userId);
   const event = await Event.findByPk(eventId);
   if (event) {
     await event.destroy();
-    return res.send('Successfully Deleted Event')
+    const events = await Event.findAll({
+      where: { userId: usrId }
+    })
+    console.log(events)
+    return res.send({events})
   }
 }))
 
