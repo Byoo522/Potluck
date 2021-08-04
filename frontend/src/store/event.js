@@ -46,7 +46,7 @@ export const getEvents = () => async (dispatch) => {
 // }
 
 export const createEvent = (data) => async (dispatch) => {
-  const res = await csrfFetch('api/events/', {
+  const res = await csrfFetch('/api/events/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -59,6 +59,14 @@ export const createEvent = (data) => async (dispatch) => {
     const event = await res.json();
     dispatch(addEvent(event))
     return res
+  }
+}
+
+export const removeWatch = (eventId) => async (dispatch) => {
+  const res = await fetch(`/api/events/${eventId}`, { method: 'DELETE' })
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(setEvent(data))
   }
 }
 
@@ -86,6 +94,8 @@ const eventsReducer = (state = initialState, action) => {
     //   }
     case ADD_EVENT:
       return { ...state, [action.event.id]: action.event }
+    // case REMOVE_WATCH:
+    //   return { ...state, events: action.payload }
     case UNLOAD_EVENTS:
       return {
         ...initialState,
