@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import { createEvent, getEvents } from "../../store/event";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,7 @@ function EventFormPage() {
   const addDescription = (e) => setDescription(e.target.value);
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const payload = {
       userId,
@@ -35,7 +35,7 @@ function EventFormPage() {
       description,
     };
 
-    const event = await dispatch(createEvent(payload));
+    const event = dispatch(createEvent(payload));
     dispatch(getEvents());
     if (event) {
       history.push('/events')
