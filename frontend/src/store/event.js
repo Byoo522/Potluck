@@ -4,6 +4,7 @@ export const SET_EVENT = 'events/SET_EVENT';
 export const ADD_EVENT = 'events/ADD_EVENT';
 export const EDIT_EVENT = 'events/EDIT_EVENT';
 export const REMOVE_EVENT = 'events/REMOVE_EVENT';
+export const UNLOAD_EVENTS = 'events/UNLOAD'
 
 // Define Action Creators
 const setEvent = (events) => ({
@@ -26,6 +27,10 @@ const removeEvent = (event) => ({
   event,
 })
 
+export const UnloadEvents = () => ({
+  type: UNLOAD_EVENTS
+})
+
 
 // Defining Thunks
 export const getEvents = () => async (dispatch) => {
@@ -34,8 +39,14 @@ export const getEvents = () => async (dispatch) => {
   dispatch(setEvent(events))
 };
 
+// export const createEvent = (data) => async (dispatch) => {
+//   const { event } = await csrfFetch.get('api/events/');
+//   dispatch(addEvent(event))
+
+// }
+
 export const createEvent = (data) => async (dispatch) => {
-  const res = await csrfFetch(`api/events`, {
+  const res = await csrfFetch('api/events/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -52,7 +63,10 @@ export const createEvent = (data) => async (dispatch) => {
 }
 
 // Defining initial state
-const initialState = {};
+// const initialState = {
+//   all: {}
+// };
+const initialState = {};  // prior
 
 // Defining a reducer - accept state and action, returns next state and action
 const eventsReducer = (state = initialState, action) => {
@@ -64,8 +78,21 @@ const eventsReducer = (state = initialState, action) => {
         allEvents[event.id] = event;
       });
       return { ...state, ...allEvents, };
+    // case ADD_EVENT:
+    //   return {
+    //     ...state.all, all: {
+    //       [action.event.id]: action.event
+    //     }
+    //   }
     case ADD_EVENT:
       return { ...state, [action.event.id]: action.event }
+    case UNLOAD_EVENTS:
+      return {
+        ...initialState,
+        all: {
+          ...initialState.all
+        }
+      }
     default:
       return state;
   }
