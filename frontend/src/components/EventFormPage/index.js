@@ -23,7 +23,7 @@ function EventFormPage() {
   const addDescription = (e) => setDescription(e.target.value);
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const payload = {
       userId,
@@ -35,7 +35,7 @@ function EventFormPage() {
       description,
     };
 
-    const event = await dispatch(createEvent(payload));
+    const event = dispatch(createEvent(payload));
     dispatch(getEvents());
     if (event) {
       history.push('/events')
