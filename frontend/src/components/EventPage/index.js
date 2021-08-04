@@ -10,8 +10,8 @@ import { csrfFetch } from "../../store/csrf";
 
 const EventPage = () => {
   const dispatch = useDispatch();
-  const events = useSelector((state) => Object.values(state.events));
-  const [allEvents, setAllEvents] = useState(events)
+  const events = useSelector((state) => state.events);
+  // const [allEvents, setAllEvents] = useState(events)
   const userId = useSelector((state) => state.session.user.id);
 
   useEffect(() => {
@@ -20,13 +20,15 @@ const EventPage = () => {
   }, [])
 
   useEffect(() => {
-    setAllEvents(events)
+    // setAllEvents(events)
     // return () => dispatch(UnloadEvents());
-  }, [events])
+  }, [])
 
   const handleDelete = (id) => {
     dispatch(removeEvent(userId, id));
-    setAllEvents(events);
+    // setAllEvents(events);
+    // const newEvents = dispatch(removeEvent(userId, id));
+    // setAllEvents(newEvents);
   }
 
 
@@ -44,7 +46,7 @@ const EventPage = () => {
           </tr>
         </thead>
         <tbody>
-          {allEvents && allEvents.map((event) => (
+          {events && Object.values(events).map((event) => (
             <tr key={event?.id}>
               <td>{event?.title}</td>
               <td>{event?.max_guests}</td>
@@ -56,7 +58,7 @@ const EventPage = () => {
               <button className='delete-btn red-bg yellow' onClick={() => handleDelete(event?.id)}>Delete</button>
             </tr>
           ))}
-          <Link to='/event/new'>
+          <Link to='/events/new'>
             <button className='create-event-btn yellow-bg red'>Create Event</button>
           </Link>
         </tbody>

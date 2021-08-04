@@ -62,6 +62,23 @@ export const createEvent = (data) => async (dispatch) => {
   }
 }
 
+export const updateEvent = (data) => async (dispatch) => {
+  const res = await csrfFetch('/api/events/', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (res.ok) {
+    console.log('res is okay')
+    const {event} = await res.json();
+    dispatch(editEvent(event))
+    return res
+  }
+}
+
 export const removeEvent = (userId, eventId) => async (dispatch) => {
   const res = await csrfFetch(`/api/events/delete/${eventId}/users/${userId}`, {
     method: 'DELETE',
@@ -75,9 +92,10 @@ export const removeEvent = (userId, eventId) => async (dispatch) => {
     if (data.errors) {
       return data.errors
     } else {
-      dispatch(setEvent(data.events))
+      dispatch(deleteEvent(data.events))
     }
     return res
+    // return data.events
   }
 }
 
@@ -92,12 +110,12 @@ const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_EVENT:
       const allEvents = {};
-      console.log(action.events)
+      // console.log(action.events)
       action.events.forEach((event) => {
         // normalizing event
         allEvents[event.id] = event;
       });
-      return { ...state, ...allEvents, };
+      return { ...allEvents };
     // case ADD_EVENT:
     //   return {
     //     ...state.all, all: {
@@ -107,10 +125,16 @@ const eventsReducer = (state = initialState, action) => {
     case ADD_EVENT:
       return { ...state, [action.event.id]: action.event }
     case REMOVE_EVENT:
-      // need to remove the event here
-      // const eventState = state.events
-      return { ...state, events: action.payload }
-
+      const newState = {};
+      console.log(action.events)
+      action.events.forEach((event) => {
+        newState[event.id] = event;
+      });
+      return { ...newState }
+    // need to remove the event here
+    // const eventState = state.events
+    case EDIT_EVENT:
+      return { ...state, [action.event.id]: action.event }
     // case UNLOAD_EVENTS:
     //   return {
     //     ...initialState,
