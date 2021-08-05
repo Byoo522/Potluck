@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from 'react-router-dom';
-import { createEvent, getEvents, updateEvent } from "../../store/event";
+import { useHistory, useParams } from 'react-router-dom';
+import { updateEvent } from "../../store/event";
 import { useDispatch, useSelector } from "react-redux";
 
 
 function EditEventForm() {
-  const userId = useSelector(state => state?.session.user.id)
+  // const userId = useSelector(state => state?.session.user.id)
+  // const params = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
@@ -22,34 +24,42 @@ function EditEventForm() {
   const addTime = (e) => setTime(e.target.value);
   const addDescription = (e) => setDescription(e.target.value);
 
-  useEffect(() => {
-    dispatch(getEvents());
+  // useEffect(() => {
+  //   dispatch(getEvents());
 
-  }, [])
+  // }, [dispatch])
+
+  // const handleEdit = (e) => {
+  // e.preventDefault();
+  // const updatedOneEvent = { title, max_guests, location, date, time, description };
+  // dispatch(updateEvent(updatedOneEvent))
+  // dispatch(getEvents())
+  // }
 
 
   const handleEdit = (id) => {
     dispatch()
+    history.push('/events')
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const payload = {
-      userId,
-      title,
-      max_guests,
-      location,
-      date,
-      time,
-      description,
-    };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const payload = {
+  //     userId,
+  //     title,
+  //     max_guests,
+  //     location,
+  //     date,
+  //     time,
+  //     description,
+  //   };
 
-    const event = dispatch(createEvent(payload));
-    dispatch(getEvents());
-    if (event) {
-      history.push('/events')
-    }
-  }
+  //   const event = dispatch(createEvent(payload));
+  //   dispatch(getEvents());
+  //   if (event) {
+  //     history.push('/events')
+  //   }
+  // }
 
   return (
     <div>

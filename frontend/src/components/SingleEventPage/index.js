@@ -20,6 +20,7 @@ function SingleEventPage() {
   }, [])
 
   const handleDelete = (id) => {
+    console.log(id)
     dispatch(removeEvent(id));
     history.push('/events')
   }

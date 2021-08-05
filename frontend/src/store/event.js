@@ -28,9 +28,9 @@ const editEvent = (event) => ({
   event,
 })
 
-const deleteEvent = (event) => ({
+const deleteEvent = (eventId) => ({
   type: REMOVE_EVENT,
-  event,
+  eventId,
 })
 
 export const UnloadEvents = () => ({
@@ -52,12 +52,6 @@ export const getOneEvent = (eventId) => async (dispatch) => {
   dispatch(setOneEvent(event))
 };
 
-// export const createEvent = (data) => async (dispatch) => {
-//   const { event } = await csrfFetch.get('api/events/');
-//   dispatch(addEvent(event))
-
-// }
-
 export const createEvent = (data) => async (dispatch) => {
   const res = await csrfFetch('/api/events/', {
     method: 'POST',
@@ -75,28 +69,31 @@ export const createEvent = (data) => async (dispatch) => {
   }
 }
 
-export const updateEvent = (data, eventId) => async (dispatch) => {
+export const updateEvent = (eventId) => async (dispatch) => {
   const res = await csrfFetch(`/api/events/${eventId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(eventId)
   });
 
   if (res.ok) {
     const { event } = await res.json();
+    // const updatedEvent = await res.json();
+    // dispatch(editEvent(updatedEvent));
     dispatch(editEvent(event))
     return res
   }
 }
 
-export const removeEvent = (eventId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/events/delete/${eventId}`, {
+export const removeEvent = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/events/delete/`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
     },
+    body: JSON.stringify({ id })
   });
 
   if (res.ok) {
@@ -104,8 +101,8 @@ export const removeEvent = (eventId) => async (dispatch) => {
     if (data.errors) {
       return data.errors
     } else {
-      // dispatch(deleteEvent(data.events))
-      dispatch(deleteEvent(data))
+      dispatch(deleteEvent(id))
+      // dispatch(deleteEvent(data))
     }
     return res
   }
@@ -115,11 +112,11 @@ const initialState = {};
 
 // Defining a reducer - accept state and action, returns next state and action
 const eventsReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case SET_EVENT:
       const allEvents = {};
       action.events.forEach((event) => {
-        // normalize event
         allEvents[event.id] = event;
       });
       return { ...allEvents };
@@ -130,9 +127,9 @@ const eventsReducer = (state = initialState, action) => {
     case ADD_EVENT:
       return { ...state, [action.event.id]: action.event }
     case REMOVE_EVENT:
-      const newState = { ...state };
-      delete newState[action.event.id]
-      return { ...newState }
+      newState = { ...state };
+      delete newState[action.eventId]
+      return newState
     // case REMOVE_EVENT:
     //   const newState = {};
     //   action.events.forEach((event) => {
@@ -140,16 +137,16 @@ const eventsReducer = (state = initialState, action) => {
     //   });
     //   return { ...newState }
     case EDIT_EVENT:
-      return { ...state, [action.event.id]: action.event }
-    // case UNLOAD_EVENTS:
-    //   return {
-    //     ...initialState,
-    //     all: {
-    //       ...initialState.all
-    //     }
-    //   }
+      // return { ...state, [action.event.id]: action.event }
+      const {event} = action
+      newState = {...state, [event.id]: event}
+      return newState
     default:
       return state;
+    // case REMOVE_EVENT:
+    //   const newState = { ...state };
+    //   delete newState[action.event]
+    //   return { ...newState }
   }
 };
 
