@@ -29,15 +29,15 @@ app.use(helmet({
 }));
 
 // Set the _csrf token and create req.csrfToken method - COMMENT OUT TO TEST BACKEND WITHOUT INVALID TOKEN ERROR
-// app.use(
-//   csurf({
-//     cookie: {
-//       secure: isProduction,
-//       sameSite: isProduction && "Lax",
-//       httpOnly: true,
-//     },
-//   })
-// );
+app.use(
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true,
+    },
+  })
+);
 
 app.use(routes); // Connect all the routes
 
