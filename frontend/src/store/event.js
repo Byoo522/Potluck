@@ -62,7 +62,6 @@ export const createEvent = (data) => async (dispatch) => {
   });
 
   if (res.ok) {
-    console.log('res is okay')
     const event = await res.json();
     dispatch(addEvent(event.newEvent))
     return res
