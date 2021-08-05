@@ -5,6 +5,8 @@ import SignupFormPage from './components/SignupFormPage';
 import LoginFormPage from "./components/LoginFormPage";
 import EventPage from './components/EventPage';
 import EventFormPage from './components/EventFormPage';
+import SingleEventPage from './components/SingleEventPage';
+import EditEventForm from './components/EditEventForm';
 import * as sessionActions from './store/session';
 
 import Navigation from './components/Navigation';
@@ -35,9 +37,12 @@ function App() {
           <Route exact path='/events/new/'>
             <EventFormPage />
           </Route>
-          {/* <Route exact path='/events/:id/'>
-
-          </Route> */}
+          <Route exact path='/events/:id/'>
+            <SingleEventPage/>
+          </Route>
+          <Route path='/events/:id/edit'>
+            <EditEventForm/>
+          </Route>
         </Switch>
       )}
     </>

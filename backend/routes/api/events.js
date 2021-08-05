@@ -10,16 +10,11 @@ const { Events } = require('pg');
 // const { db } = require('../../db');
 
 // GET ALL events
-router.get('/', restoreUser, asyncHandler(async (req, res) => {
+router.get('/', restoreUser, requireAuth, asyncHandler(async (req, res) => {
   const events = await Event.findAll();
   res.json(events);
 }))
 
-// GET ALL events for LOGGED IN USER - remember to add in requireAuth
-router.get('/', restoreUser, asyncHandler(async (req, res) => {
-  const events = await Event.findAll();
-  res.json(events);
-}))
 
 // GET ONE events for logged user
 router.get('/:id', restoreUser, asyncHandler(async (req, res) => {
@@ -47,17 +42,13 @@ router.put('/:id', asyncHandler(async (req, res) => {
 }))
 
 // DELETE event
-router.delete('/delete/:id/users/:userId', asyncHandler(async (req, res) => {
-  const eventId = parseInt(req.params.id);
-  const usrId = parseInt(req.params.userId);
+// router.delete('/delete/:id/users/:userId', asyncHandler(async (req, res) => {
+router.delete('delete/:eventId', asyncHandler(async (req, res) => {
+  const eventId = parseInt(req.params.eventId);
   const event = await Event.findByPk(eventId);
   if (event) {
     await event.destroy();
-    const events = await Event.findAll({
-      where: { userId: usrId }
-    })
-    console.log(events)
-    return res.send({events})
+    return res.send({ events })
   }
 }))
 

@@ -1,15 +1,21 @@
 import { csrfFetch } from "./csrf";
 // Defining Action Types as Constants
 export const SET_EVENT = 'events/SET_EVENT';
+export const SET_ONE_EVENT = 'events/SET_ONE_EVENT'
 export const ADD_EVENT = 'events/ADD_EVENT';
 export const EDIT_EVENT = 'events/EDIT_EVENT';
 export const REMOVE_EVENT = 'events/REMOVE_EVENT';
-export const UNLOAD_EVENTS = 'events/UNLOAD'
+export const UNLOAD_EVENTS = 'events/UNLOAD';
 
 // Define Action Creators
 const setEvent = (events) => ({
   type: SET_EVENT,
   events,
+})
+
+const setOneEvent = (event) => ({
+  type: SET_ONE_EVENT,
+  event,
 })
 
 const addEvent = (event) => ({
@@ -33,10 +39,17 @@ export const UnloadEvents = () => ({
 
 
 // Defining Thunks
+// get all
 export const getEvents = () => async (dispatch) => {
   const res = await csrfFetch('/api/events');
   const events = await res.json();
   dispatch(setEvent(events))
+};
+
+export const getOneEvent = (eventId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/events/${eventId}`);
+  const event = await res.json();
+  dispatch(setOneEvent(event))
 };
 
 // export const createEvent = (data) => async (dispatch) => {
@@ -62,8 +75,8 @@ export const createEvent = (data) => async (dispatch) => {
   }
 }
 
-export const updateEvent = (data) => async (dispatch) => {
-  const res = await csrfFetch('/api/events/', {
+export const updateEvent = (data, eventId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/events/${eventId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -72,15 +85,14 @@ export const updateEvent = (data) => async (dispatch) => {
   });
 
   if (res.ok) {
-    console.log('res is okay')
-    const {event} = await res.json();
+    const { event } = await res.json();
     dispatch(editEvent(event))
     return res
   }
 }
 
-export const removeEvent = (userId, eventId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/events/delete/${eventId}/users/${userId}`, {
+export const removeEvent = (eventId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/events/delete/${eventId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -92,47 +104,41 @@ export const removeEvent = (userId, eventId) => async (dispatch) => {
     if (data.errors) {
       return data.errors
     } else {
-      dispatch(deleteEvent(data.events))
+      // dispatch(deleteEvent(data.events))
+      dispatch(deleteEvent(data))
     }
     return res
-    // return data.events
   }
 }
 
-// Defining initial state
-// const initialState = {
-//   all: {}
-// };
-const initialState = {};  // prior
+const initialState = {};
 
 // Defining a reducer - accept state and action, returns next state and action
 const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_EVENT:
       const allEvents = {};
-      // console.log(action.events)
       action.events.forEach((event) => {
-        // normalizing event
+        // normalize event
         allEvents[event.id] = event;
       });
       return { ...allEvents };
-    // case ADD_EVENT:
-    //   return {
-    //     ...state.all, all: {
-    //       [action.event.id]: action.event
-    //     }
-    //   }
+    case SET_ONE_EVENT:
+      const oneNewState = {};
+      oneNewState[action.event.id] = action.event;
+      return { ...oneNewState };
     case ADD_EVENT:
       return { ...state, [action.event.id]: action.event }
     case REMOVE_EVENT:
-      const newState = {};
-      console.log(action.events)
-      action.events.forEach((event) => {
-        newState[event.id] = event;
-      });
+      const newState = { ...state };
+      delete newState[action.event.id]
       return { ...newState }
-    // need to remove the event here
-    // const eventState = state.events
+    // case REMOVE_EVENT:
+    //   const newState = {};
+    //   action.events.forEach((event) => {
+    //     newState[event.id] = event;
+    //   });
+    //   return { ...newState }
     case EDIT_EVENT:
       return { ...state, [action.event.id]: action.event }
     // case UNLOAD_EVENTS:
