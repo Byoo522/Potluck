@@ -49,31 +49,6 @@ router.delete('/delete', restoreUser, requireAuth, asyncHandler(async (req, res)
   res.json(event);
 }))
 
-// router.delete('delete/:eventId', restoreUser, requireAuth, asyncHandler(async (req, res) => {
-//   const eventId = parseInt(req.params.eventId);
-//   const event = await Event.findByPk(eventId);
-
-//   if (event) {
-//     await event.destroy();
-//     return res.send({ events })
-//   }
-// }))
-
-
-
-// prior DELETE
-// router.delete('/delete/:id/users/:userId', asyncHandler(async (req, res) => {
-//   const eventId = parseInt(req.params.id);
-//   const usrId = parseInt(req.params.userId);
-//   const event = await Event.findByPk(eventId);
-//   if (event) {
-//     await event.destroy();
-//     const events = await Event.findAll({
-//       where: { userId: usrId }
-//     })
-//     return res.send({ events })
-//   }
-// }))
 
 
 module.exports = router;
