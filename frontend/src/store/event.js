@@ -55,7 +55,6 @@ export const createEvent = (data) => async (dispatch) => {
   });
 
   if (res.ok) {
-    console.log('res is okay')
     const event = await res.json();
     dispatch(addEvent(event.newEvent))
     return res
@@ -72,8 +71,8 @@ export const updateEvent = (data) => async (dispatch) => {
   });
 
   if (res.ok) {
-    console.log('res is okay')
-    const {event} = await res.json();
+    // console.log('res is okay')
+    const { event } = await res.json();
     dispatch(editEvent(event))
     return res
   }
@@ -110,7 +109,6 @@ const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_EVENT:
       const allEvents = {};
-      // console.log(action.events)
       action.events.forEach((event) => {
         // normalizing event
         allEvents[event.id] = event;
@@ -126,7 +124,6 @@ const eventsReducer = (state = initialState, action) => {
       return { ...state, [action.event.id]: action.event }
     case REMOVE_EVENT:
       const newState = {};
-      console.log(action.events)
       action.events.forEach((event) => {
         newState[event.id] = event;
       });

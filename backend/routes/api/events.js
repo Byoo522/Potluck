@@ -56,8 +56,7 @@ router.delete('/delete/:id/users/:userId', asyncHandler(async (req, res) => {
     const events = await Event.findAll({
       where: { userId: usrId }
     })
-    console.log(events)
-    return res.send({events})
+    return res.send({ events })
   }
 }))
 
