@@ -130,23 +130,13 @@ const eventsReducer = (state = initialState, action) => {
       newState = { ...state };
       delete newState[action.eventId]
       return newState
-    // case REMOVE_EVENT:
-    //   const newState = {};
-    //   action.events.forEach((event) => {
-    //     newState[event.id] = event;
-    //   });
-    //   return { ...newState }
     case EDIT_EVENT:
       // return { ...state, [action.event.id]: action.event }
-      const {event} = action
-      newState = {...state, [event.id]: event}
+      const { event } = action
+      newState = { ...state, [event.id]: event }
       return newState
     default:
       return state;
-    // case REMOVE_EVENT:
-    //   const newState = { ...state };
-    //   delete newState[action.event]
-    //   return { ...newState }
   }
 };
 
