@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from 'react-router-dom';
-import { updateEvent } from "../../store/event";
+import { updateEvent, getOneEvent, getEvents } from "../../store/event";
 import { useDispatch, useSelector } from "react-redux";
 
 
 function EditEventForm() {
-  // const userId = useSelector(state => state?.session.user.id)
+  const userId = useSelector(state => state?.session.user.id)
   // const params = useParams();
+  // const currentEvent = useSelector(state => Object.values(state?.events)[0])
+
   const { id } = useParams();
+  const eventId = id;
+  const currentEvent = useSelector(state => state.events[eventId])
+  console.log('this is current event', currentEvent)
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
@@ -17,94 +22,80 @@ function EditEventForm() {
   const [time, setTime] = useState('');
   const [description, setDescription] = useState('');
 
-  const addTitle = (e) => setTitle(e.target.value);
-  const addMax_Guests = (e) => setMax_Guests(e.target.value);
-  const addLocation = (e) => setLocation(e.target.value);
-  const addDate = (e) => setDate(e.target.value);
-  const addTime = (e) => setTime(e.target.value);
-  const addDescription = (e) => setDescription(e.target.value);
+  const updateTitle = (e) => setTitle(e.target.value);
+  const updateMax_Guests = (e) => setMax_Guests(e.target.value);
+  const updateLocation = (e) => setLocation(e.target.value);
+  const updateDate = (e) => setDate(e.target.value);
+  const updateTime = (e) => setTime(e.target.value);
+  const updateDescription = (e) => setDescription(e.target.value);
 
-  // useEffect(() => {
-  //   dispatch(getEvents());
+  useEffect(() => {
+    // dispatch(getOneEvent(eventId));
 
-  // }, [dispatch])
+  }, [dispatch])
 
-  // const handleEdit = (e) => {
-  // e.preventDefault();
-  // const updatedOneEvent = { title, max_guests, location, date, time, description };
-  // dispatch(updateEvent(updatedOneEvent))
-  // dispatch(getEvents())
-  // }
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const payload = {
+      eventId: currentEvent.id,
+      userId: currentEvent.userId,
+      title,
+      max_guests: Number(max_guests),
+      location,
+      date,
+      time,
+      description,
+    };
 
-
-  const handleEdit = (id) => {
-    dispatch()
+    dispatch(updateEvent(payload))
+    dispatch(getEvents())
     history.push('/events')
   }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const payload = {
-  //     userId,
-  //     title,
-  //     max_guests,
-  //     location,
-  //     date,
-  //     time,
-  //     description,
-  //   };
-
-  //   const event = dispatch(createEvent(payload));
-  //   dispatch(getEvents());
-  //   if (event) {
-  //     history.push('/events')
-  //   }
-  // }
 
   return (
     <div>
       <h4>Edit Event Form</h4>
-      {/* <form onSubmit={handleSubmit}>
+      <form >
         <input
           type="text"
-          placeholder="Title for Event"
+          placeholder={`${currentEvent.title}`}
           min="1"
           required
           value={title}
-          onChange={addTitle} />
+          onChange={updateTitle} />
         <input
           type="date"
-          placeholder="Date"
+          placeholder={`${currentEvent.date}`}
           required
           value={date}
-          onChange={addDate} />
+          onChange={updateDate} />
         <input
           type="time"
-          placeholder="Time"
+          placeholder={`${currentEvent.time}`}
           required
           value={time}
-          onChange={addTime} />
+          onChange={updateTime} />
         <input
           type="number"
-          placeholder="Max Number of Guests"
+          placeholder={`${currentEvent.max_guests}`}
           min="1"
           required
           value={max_guests}
-          onChange={addMax_Guests} />
+          onChange={updateMax_Guests} />
         <input
           type="text"
-          placeholder="Location"
+          placeholder={`${currentEvent.location}`}
           min="1"
           required
           value={location}
-          onChange={addLocation} />
+          onChange={updateLocation} />
         <input
           type="text"
-          placeholder="Description"
+          placeholder={`${currentEvent.description}`}
           value={description}
-          onChange={addDescription} />
-        <button type='submit'>Create</button>
-      </form> */}
+          onChange={updateDescription} />
+        <button type='submit' onClick={handleUpdate}>Update</button>
+      </form>
     </div>
   )
 }

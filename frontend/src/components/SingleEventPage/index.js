@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneEvent, removeEvent, updateEvent } from "../../store/event";
+import { getOneEvent, removeEvent } from "../../store/event";
 import './SingleEventPage.css';
 // import { csrfFetch } from "../../store/csrf";
 

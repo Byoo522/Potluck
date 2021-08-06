@@ -24,7 +24,7 @@ function EventFormPage() {
 
    useEffect(() => {
     dispatch(getEvents());
-    return () => dispatch(UnloadEvents());
+    // return () => dispatch(UnloadEvents());
   }, [])
 
 

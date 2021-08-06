@@ -31,13 +31,12 @@ router.post('/', restoreUser, requireAuth, asyncHandler(async (req, res) => {
 }))
 
 // EDIT post
-router.put('/:id', restoreUser, requireAuth, asyncHandler(async (req, res) => {
-  const eventId = parseInt(req.params.id, 10);
+router.put('/edit', restoreUser, requireAuth, asyncHandler(async (req, res) => {
+  const { eventId, title, max_guests, location, date, time, description } = req.body;
   const event = await Event.findByPk(eventId);
   if (event) {
-    const { title, max_guests, location, date, time, description } = req.body;
     await event.update({ title, max_guests, location, date, time, description });
-    res.json({ event })
+    res.json(event)
   }
 }))
 
