@@ -2,7 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneEvent, removeEvent } from "../../store/event";
+import { getEvents, removeEvent } from "../../store/event";
+import CommentSection from "../CommentSection";
 import './SingleEventPage.css';
 // import { csrfFetch } from "../../store/csrf";
 
@@ -15,7 +16,7 @@ function SingleEventPage() {
   // const userId = useSelector((state) => state.session.user.id);
 
   useEffect(() => {
-    dispatch(getOneEvent(id));
+    dispatch(getEvents());
 
   }, [])
 
@@ -23,22 +24,22 @@ function SingleEventPage() {
     dispatch(removeEvent(id));
     history.push('/events')
   }
-  
-  return (
-    <div className='form-wrapper'>
-      <table className='event-form'>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Max Guests</th>
-            <th>Location</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
 
+  return (
+    <div className='single-event-container'>
+      <div className='form-wrapper'>
+        <table className='event-form'>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Max Guests</th>
+              <th>Location</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
             <tr>
               <td>{events[id]?.title}</td>
               <td>{events[id]?.max_guests}</td>
@@ -51,9 +52,12 @@ function SingleEventPage() {
               </Link>
               <button className='delete-btn red-bg yellow' onClick={() => handleDelete(events[id]?.id)}>Delete</button>
             </tr>
-
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
+      <div className='comment-section-container'>
+        <CommentSection />
+      </div>
     </div >
   )
 }

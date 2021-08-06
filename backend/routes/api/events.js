@@ -16,14 +16,6 @@ router.get('/', restoreUser, requireAuth, asyncHandler(async (req, res) => {
 }))
 
 
-// GET ONE events for logged user
-router.get('/:id', restoreUser, requireAuth, asyncHandler(async (req, res) => {
-  // const eventId = parseInt(req.params.id);
-  const {id} = req.body
-  const event = await event.findByPk(id);
-  res.json(event);
-}))
-
 // POST new event
 router.post('/', restoreUser, requireAuth, asyncHandler(async (req, res) => {
   const { userId, title, max_guests, location, date, time, description } = req.body;

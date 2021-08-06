@@ -68,7 +68,6 @@ export const createEvent = (data) => async (dispatch) => {
 }
 
 export const updateEvent = (event) => async (dispatch) => {
-  console.log('this is the event', event)
   const res = await csrfFetch(`/api/events/edit`, {
     method: 'PUT',
     headers: {
@@ -84,7 +83,7 @@ export const updateEvent = (event) => async (dispatch) => {
     const updatedEvent = await res.json();
     console.log('this is updatedEvent', updatedEvent)
     dispatch(editEvent(updatedEvent));
-    // return res
+    return res
   }
 }
 
@@ -121,10 +120,6 @@ const eventsReducer = (state = initialState, action) => {
         allEvents[event.id] = event;
       });
       return { ...allEvents };
-    case SET_ONE_EVENT:
-      const oneNewState = {};
-      oneNewState[action.event.id] = action.event;
-      return { ...oneNewState };
     case ADD_EVENT:
       return { ...state, [action.event.id]: action.event }
     case REMOVE_EVENT:

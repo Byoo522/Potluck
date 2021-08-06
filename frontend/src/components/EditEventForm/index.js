@@ -12,7 +12,6 @@ function EditEventForm() {
   const { id } = useParams();
   const eventId = id;
   const currentEvent = useSelector(state => state.events[eventId])
-  console.log('this is current event', currentEvent)
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
