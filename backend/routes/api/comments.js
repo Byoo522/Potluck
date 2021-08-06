@@ -11,19 +11,33 @@ router.get('/', restoreUser, requireAuth, asyncHandler(async (req, res) => {
 }))
 
 // GET ONE events for logged user
-router.get('/:id', restoreUser, requireAuth, asyncHandler(async (req, res) => {
-  const commentId = parseInt(req.params.id);
-  const comment = await Event.findByPk(commentId);
-  res.json(comment);
-}))
+// router.get('/:id', restoreUser, requireAuth, asyncHandler(async (req, res) => {
+//   const commentId = parseInt(req.params.id);
+//   const comment = await Event.findByPk(commentId);
+//   res.json(comment);
+// }))
 
 
 // POST new comment
-router.post('/', restoreUser, requireAuth, asyncHandler(async (req, res) => {
+// router.post('/post', restoreUser, requireAuth, asyncHandler(async (req, res) => {
+//   const { userId, eventId, content } = req.body;
+//   const event = await Event.findOne({
+//     where: {
+//       eventId: eventId,
+//       userId: userId
+//     }
+//   })
+//   const newComment = await event.create({ content })
+//   return res.json({ newComment })
+// }))
+
+router.post('/post', restoreUser, requireAuth, asyncHandler(async (req, res) => {
   const { userId, eventId, content } = req.body;
   const newComment = await Comment.create({ userId, eventId, content })
   return res.json({ newComment })
 }))
+
+
 
 // EDIT comment
 router.put('/edit', restoreUser, requireAuth, asyncHandler(async (req, res) => {
