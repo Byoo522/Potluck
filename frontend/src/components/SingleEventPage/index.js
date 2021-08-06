@@ -9,22 +9,21 @@ import './SingleEventPage.css';
 
 function SingleEventPage() {
   const dispatch = useDispatch();
-  const params = useParams();
+  const { id } = useParams();
   const history = useHistory();
   const events = useSelector((state) => state.events);
   // const userId = useSelector((state) => state.session.user.id);
 
   useEffect(() => {
-    dispatch(getOneEvent(params.id));
+    dispatch(getOneEvent(id));
 
   }, [])
 
   const handleDelete = (id) => {
-    console.log(id)
     dispatch(removeEvent(id));
     history.push('/events')
   }
-
+  
   return (
     <div className='form-wrapper'>
       <table className='event-form'>
@@ -39,20 +38,20 @@ function SingleEventPage() {
           </tr>
         </thead>
         <tbody>
-          {events && Object.values(events).map((event) => (
+
             <tr>
-              <td>{event?.title}</td>
-              <td>{event?.max_guests}</td>
-              <td>{event?.location}</td>
-              <td>{event?.date}</td>
-              <td>{event?.time}</td>
-              <td>{event?.description}</td>
-              <Link to={`/events/${event.id}/edit`}>
+              <td>{events[id]?.title}</td>
+              <td>{events[id]?.max_guests}</td>
+              <td>{events[id]?.location}</td>
+              <td>{events[id]?.date}</td>
+              <td>{events[id]?.time}</td>
+              <td>{events[id]?.description}</td>
+              <Link to={`/events/${events[id]?.id}/edit`}>
                 <button className='edit-btn yellow-bg red'>Edit</button>
               </Link>
-              <button className='delete-btn red-bg yellow' onClick={() => handleDelete(event?.id)}>Delete</button>
+              <button className='delete-btn red-bg yellow' onClick={() => handleDelete(events[id]?.id)}>Delete</button>
             </tr>
-          ))}
+
         </tbody>
       </table>
     </div >
