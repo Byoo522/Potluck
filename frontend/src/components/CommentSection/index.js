@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { getComments } from '../../store/comment'
 import { useDispatch, useSelector } from 'react-redux'
+import CommentForm from '../CommentForm';
 
 
 function CommentSection() {
@@ -18,8 +19,13 @@ function CommentSection() {
     <div className='comments-container'>
       <h1>Comments sections</h1>
       {comments && Object.values(comments).map((comment) => (
-        <h4 key={comment?.id}>{comment?.content}</h4>
+        <div>
+          <h4 key={comment?.id}>{comment?.content}</h4>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
       ))}
+      <CommentForm />
     </div>
   )
 }
