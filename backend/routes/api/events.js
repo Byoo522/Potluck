@@ -19,7 +19,7 @@ router.get('/', restoreUser, requireAuth, asyncHandler(async (req, res) => {
 // GET ONE events for logged user
 router.get('/:id', restoreUser, requireAuth, asyncHandler(async (req, res) => {
   const eventId = parseInt(req.params.id);
-  const event = await Event.findByPk(eventId);
+  const event = await event.findByPk(eventId);
   res.json(event);
 }))
 
