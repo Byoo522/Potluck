@@ -22,7 +22,6 @@ function CommentForm() {
       eventId,
       content,
     };
-    console.log('This is the payload', payload)
 
     const commentDispatch = dispatch(postComment(payload));
     dispatch(getComments());
