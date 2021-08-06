@@ -34,7 +34,6 @@ router.put('/edit', restoreUser, requireAuth, asyncHandler(async (req, res) => {
 }))
 
 // DELETE event
-
 router.delete('/delete', restoreUser, requireAuth, asyncHandler(async (req, res) => {
   const { id } = req.body;
   const event = await Event.findByPk(id);
