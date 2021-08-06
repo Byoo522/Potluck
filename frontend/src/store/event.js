@@ -39,7 +39,6 @@ export const UnloadEvents = () => ({
 
 
 // Defining Thunks
-// get all
 export const getEvents = () => async (dispatch) => {
   const res = await csrfFetch('/api/events');
   const events = await res.json();
@@ -62,28 +61,30 @@ export const createEvent = (data) => async (dispatch) => {
   });
 
   if (res.ok) {
-    console.log('res is okay')
     const event = await res.json();
     dispatch(addEvent(event.newEvent))
     return res
   }
 }
 
-export const updateEvent = (eventId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/events/${eventId}`, {
+export const updateEvent = (event) => async (dispatch) => {
+  console.log('this is the event', event)
+  const res = await csrfFetch(`/api/events/edit`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(eventId)
+    body: JSON.stringify(event)
   });
 
   if (res.ok) {
-    const { event } = await res.json();
-    // const updatedEvent = await res.json();
-    // dispatch(editEvent(updatedEvent));
-    dispatch(editEvent(event))
-    return res
+    // const event = await res.json();
+    // dispatch(editEvent(event.updatedEvent))
+    // const { event } = await res.json();
+    const updatedEvent = await res.json();
+    console.log('this is updatedEvent', updatedEvent)
+    dispatch(editEvent(updatedEvent));
+    // return res
   }
 }
 
@@ -131,10 +132,10 @@ const eventsReducer = (state = initialState, action) => {
       delete newState[action.eventId]
       return newState
     case EDIT_EVENT:
-      // return { ...state, [action.event.id]: action.event }
-      const { event } = action
-      newState = { ...state, [event.id]: event }
-      return newState
+      return { ...state, [action.event.id]: action.event }
+    // const { event } = action
+    // newState = { ...state, [event.id]: event }
+    // return newState
     default:
       return state;
   }
