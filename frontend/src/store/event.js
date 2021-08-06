@@ -13,11 +13,6 @@ const setEvent = (events) => ({
   events,
 })
 
-const setOneEvent = (event) => ({
-  type: SET_ONE_EVENT,
-  event,
-})
-
 const addEvent = (event) => ({
   type: ADD_EVENT,
   event,
@@ -44,6 +39,7 @@ export const getEvents = () => async (dispatch) => {
   const events = await res.json();
   dispatch(setEvent(events))
 };
+
 
 
 export const createEvent = (data) => async (dispatch) => {
