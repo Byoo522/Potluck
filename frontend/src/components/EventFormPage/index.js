@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
-import { createEvent, getEvents, UnloadEvents } from "../../store/event";
+import { createEvent, getEvents } from "../../store/event";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -22,7 +22,7 @@ function EventFormPage() {
   const addTime = (e) => setTime(e.target.value);
   const addDescription = (e) => setDescription(e.target.value);
 
-   useEffect(() => {
+  useEffect(() => {
     dispatch(getEvents());
     // return () => dispatch(UnloadEvents());
   }, [])

@@ -45,11 +45,6 @@ export const getEvents = () => async (dispatch) => {
   dispatch(setEvent(events))
 };
 
-export const getOneEvent = (eventId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/events/${eventId}`);
-  const event = await res.json();
-  dispatch(setOneEvent(event))
-};
 
 export const createEvent = (data) => async (dispatch) => {
   const res = await csrfFetch('/api/events/', {
@@ -81,7 +76,6 @@ export const updateEvent = (event) => async (dispatch) => {
     // dispatch(editEvent(event.updatedEvent))
     // const { event } = await res.json();
     const updatedEvent = await res.json();
-    console.log('this is updatedEvent', updatedEvent)
     dispatch(editEvent(updatedEvent));
     return res
   }
@@ -102,7 +96,6 @@ export const removeEvent = (id) => async (dispatch) => {
       return data.errors
     } else {
       dispatch(deleteEvent(id))
-      // dispatch(deleteEvent(data))
     }
     return res
   }
@@ -128,9 +121,6 @@ const eventsReducer = (state = initialState, action) => {
       return newState
     case EDIT_EVENT:
       return { ...state, [action.event.id]: action.event }
-    // const { event } = action
-    // newState = { ...state, [event.id]: event }
-    // return newState
     default:
       return state;
   }
