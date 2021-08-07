@@ -5,7 +5,8 @@ const router = express.Router();
 
 const { restoreUser, requireAuth } = require('../../utils/auth');
 
-const { Event } = require('../../db/models');
+const { Event, Comment } = require('../../db/models');
+
 // const { Events } = require('pg');
 // const { db } = require('../../db');
 
@@ -37,9 +38,19 @@ router.put('/edit', restoreUser, requireAuth, asyncHandler(async (req, res) => {
 router.delete('/delete', restoreUser, requireAuth, asyncHandler(async (req, res) => {
   const { id } = req.body;
   const event = await Event.findByPk(id);
+  const comments = await Comment.findAll({
+    where: {
+      eventId: id
+    }
+  })
+  if (comments) {
+    comments.forEach((comment) => {
+      comment.destroy();
+    })
+  }
   await event.destroy();
-  res.json(event);
 
+  res.json(event);
 }))
 
 
