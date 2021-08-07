@@ -10,7 +10,7 @@ function CommentForm() {
   const history = useHistory();
   // const { id } = useParams();
   const userId = useSelector(state => state?.session.user.id)
-  // const eventId = useSelector(state => state?.event.id)
+  const eventId = useSelector(state => state?.events.current.id)
 
   const [content, setContent] = useState('');
   const addContent = (e) => setContent(e.target.value);
@@ -19,7 +19,7 @@ function CommentForm() {
     e.preventDefault();
     const payload = {
       userId,
-      // eventId,
+      eventId,
       content,
     };
 
