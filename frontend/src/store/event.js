@@ -1,11 +1,9 @@
 import { csrfFetch } from "./csrf";
 // Defining Action Types as Constants
 export const SET_EVENT = 'events/SET_EVENT';
-export const SET_ONE_EVENT = 'events/SET_ONE_EVENT'
 export const ADD_EVENT = 'events/ADD_EVENT';
 export const EDIT_EVENT = 'events/EDIT_EVENT';
 export const REMOVE_EVENT = 'events/REMOVE_EVENT';
-// export const UNLOAD_EVENTS = 'events/UNLOAD';
 export const SELECT_EVENT = 'event/SELECT_EVENT'
 
 // Define Action Creators

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from 'react-router-dom';
-import { updateEvent, getOneEvent, getEvents } from "../../store/event";
+import { useHistory } from 'react-router-dom';
+import { updateEvent, getEvents } from "../../store/event";
 import { useDispatch, useSelector } from "react-redux";
 
 
 function EditEventForm() {
-  const userId = useSelector(state => state?.session.user.id)
-  // const params = useParams();
-  // const currentEvent = useSelector(state => Object.values(state?.events)[0])
-
-  const { id } = useParams();
-  const eventId = id;
-  const currentEvent = useSelector(state => state.events[eventId])
+  const currentEvent = useSelector(state => state.events.current)
+  const eventId = currentEvent.id;
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
@@ -36,7 +31,7 @@ function EditEventForm() {
   const handleUpdate = (e) => {
     e.preventDefault();
     const payload = {
-      eventId: currentEvent.id,
+      eventId: eventId,
       userId: currentEvent.userId,
       title,
       max_guests: Number(max_guests),

@@ -43,6 +43,7 @@ router.post('/post', restoreUser, requireAuth, asyncHandler(async (req, res) => 
 
 router.delete('/delete', restoreUser, requireAuth, asyncHandler(async (req, res) => {
   const { id } = req.body;
+  console.log('32131232132154555555555', id)
   const comment = await Comment.findByPk(id);
   await comment.destroy();
   res.json(comment);
