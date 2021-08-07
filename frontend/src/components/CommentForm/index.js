@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { getComments, postComment } from '../../store/comment'
 import { useDispatch, useSelector, } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 
 
 function CommentForm() {
   const dispatch = useDispatch();
   const history = useHistory();
+  // const { id } = useParams();
   const userId = useSelector(state => state?.session.user.id)
-  const eventId = useSelector(state => state?.events.current.id)
+  // const eventId = useSelector(state => state?.event.id)
 
   const [content, setContent] = useState('');
   const addContent = (e) => setContent(e.target.value);
@@ -18,7 +19,7 @@ function CommentForm() {
     e.preventDefault();
     const payload = {
       userId,
-      eventId,
+      // eventId,
       content,
     };
 
