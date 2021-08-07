@@ -26,10 +26,11 @@ function CommentSection() {
 
 
   // need to pass in the comment id
-  const handleDelete = (id) => {
-    dispatch(removeComment(id));
-    // history.push('/events')
+  const handleDelete = (e) => {
+    const commentId = e.target.value;
+    dispatch(removeComment(commentId));
   }
+
 
   return (
     <div className='comments-container'>
@@ -38,7 +39,7 @@ function CommentSection() {
         <div>
           <h4 key={comment?.id}>{comment?.content}</h4>
           <button>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
+          <button value={comment?.id} onClick={handleDelete}>Delete</button>
         </div>
       ))}
       <CommentForm />
