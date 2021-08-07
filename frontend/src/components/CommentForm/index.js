@@ -8,9 +8,9 @@ import { useHistory, useParams } from 'react-router-dom';
 function CommentForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { id } = useParams();
+  // const { id } = useParams();
   const userId = useSelector(state => state?.session.user.id)
-  const eventId = useSelector(state => state?.events[id].id)
+  // const eventId = useSelector(state => state?.event.id)
 
   const [content, setContent] = useState('');
   const addContent = (e) => setContent(e.target.value);
@@ -19,15 +19,13 @@ function CommentForm() {
     e.preventDefault();
     const payload = {
       userId,
-      eventId,
+      // eventId,
       content,
     };
 
-    const commentDispatch = dispatch(postComment(payload));
-    dispatch(getComments());
-    if (commentDispatch) {
-      history.push(`/events`)
-    }
+    dispatch(postComment(payload));
+    setContent('')
+
   }
 
   return (

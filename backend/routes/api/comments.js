@@ -5,11 +5,6 @@ const { restoreUser, requireAuth } = require('../../utils/auth');
 const { Comment } = require('../../db/models')
 
 // GET ALL COMMENTS
-// router.get('/', restoreUser, requireAuth, asyncHandler(async (req, res) => {
-//   const comments = await Comment.findAll();
-//   res.json(comments);
-// }))
-
 router.get('/:id(\\d+)', restoreUser, requireAuth, asyncHandler(async (req, res) => {
   const idInfo = parseInt(req.params.id, 10)
   const comments = await Comment.findAll({
@@ -35,14 +30,14 @@ router.post('/post', restoreUser, requireAuth, asyncHandler(async (req, res) => 
 
 
 // EDIT comment
-router.put('/edit', restoreUser, requireAuth, asyncHandler(async (req, res) => {
-  const { userId, eventId, content } = req.body;
-  const comment = await Comment.findByPk(commentId);
-  if (comment) {
-    await comment.update({ content });
-    res.json(comment)
-  }
-}))
+// router.put('/edit', restoreUser, requireAuth, asyncHandler(async (req, res) => {
+//   const { userId, eventId, content } = req.body;
+//   const comment = await Comment.findByPk(commentId);
+//   if (comment) {
+//     await comment.update({ content });
+//     res.json(comment)
+//   }
+// }))
 
 // DELETE event
 
