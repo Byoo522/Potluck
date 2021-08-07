@@ -11,7 +11,7 @@ import './EventPage.css';
 
 const EventPage = () => {
   const dispatch = useDispatch();
-  const events = useSelector((state) => state.events);
+  const events = useSelector((state) => state.events.all);
   const userId = useSelector((state) => state.session.user.id);
 
   useEffect(() => {

@@ -5,7 +5,8 @@ export const SET_ONE_EVENT = 'events/SET_ONE_EVENT'
 export const ADD_EVENT = 'events/ADD_EVENT';
 export const EDIT_EVENT = 'events/EDIT_EVENT';
 export const REMOVE_EVENT = 'events/REMOVE_EVENT';
-export const UNLOAD_EVENTS = 'events/UNLOAD';
+// export const UNLOAD_EVENTS = 'events/UNLOAD';
+export const SELECT_EVENT = 'event/SELECT_EVENT'
 
 // Define Action Creators
 const setEvent = (events) => ({
@@ -28,8 +29,9 @@ const deleteEvent = (eventId) => ({
   eventId,
 })
 
-export const UnloadEvents = () => ({
-  type: UNLOAD_EVENTS
+export const selectEvent = (eventId) => ({
+  type: SELECT_EVENT,
+  eventId
 })
 
 
@@ -97,7 +99,7 @@ export const removeEvent = (id) => async (dispatch) => {
   }
 }
 
-const initialState = {};
+const initialState = { all: {}, current: null, loaded: false };
 
 // Defining a reducer - accept state and action, returns next state and action
 const eventsReducer = (state = initialState, action) => {
@@ -108,15 +110,39 @@ const eventsReducer = (state = initialState, action) => {
       action.events.forEach((event) => {
         allEvents[event.id] = event;
       });
-      return { ...allEvents };
+      return {
+        ...state,
+        all: { ...allEvents },
+        loaded: true
+      };
     case ADD_EVENT:
-      return { ...state, [action.event.id]: action.event }
+      return {
+        ...state,
+        all: {
+          ...state.all,
+          [action.event.id]: action.event
+        },
+      }
     case REMOVE_EVENT:
-      newState = { ...state };
-      delete newState[action.eventId]
+      newState = {
+        ...state,
+        all: { ...state.all }
+      };
+      delete newState.all[action.eventId]
       return newState
     case EDIT_EVENT:
-      return { ...state, [action.event.id]: action.event }
+      return {
+        ...state,
+        all: {
+          ...state.all,
+          [action.event.id]: action.event
+        },
+      }
+    case SELECT_EVENT:
+      return {
+        ...state,
+        current: state.all[action.eventId]
+      }
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 // Defining Action Types as Constants
 export const SET_COMMENTS = 'comments/SET_COMMENTS';
 export const ADD_COMMENT = 'comment/ADD_COMMENT';
-
+export const REMOVE_COMMENT = 'events/REMOVE_COMMENT';
 
 // Defining Action Creator - functions that encapsulate the process of creation of an action object.
 const setComments = (comments) => ({
@@ -15,6 +15,10 @@ const addComment = (comment) => ({
   comment,
 })
 
+const deleteComment = (commentId) => ({
+  type: REMOVE_COMMENT,
+  commentId,
+})
 
 // Defining Thunks - middleware that allows you to return functions, rather than just actions, within Redux.
 // export const getComments = (id) => async (dispatch) => {
@@ -45,6 +49,27 @@ export const postComment = (data) => async (dispatch) => {
   }
 }
 
+
+export const removeComment = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/comments/delete/`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ id })
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors
+    } else {
+      dispatch(deleteComment(id))
+    }
+    return res
+  }
+}
+
 // Defining a reducer - accept state and action, returns next state and action
 const initialState = {};
 const commentsReducer = (state = initialState, action) => {
@@ -58,6 +83,10 @@ const commentsReducer = (state = initialState, action) => {
       return { ...allComments }
     case ADD_COMMENT:
       return { ...state, [action.comment.id]: action.comment }
+    case REMOVE_COMMENT:
+      newState = { ...state };
+      delete newState[action.commentId]
+      return newState
     default:
       return state;
   }
