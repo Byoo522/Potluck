@@ -6,12 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 function EditEventForm() {
   const userId = useSelector(state => state?.session.user.id)
-  // const params = useParams();
-  // const currentEvent = useSelector(state => Object.values(state?.events)[0])
-
   const { id } = useParams();
   const eventId = id;
-  const currentEvent = useSelector(state => state.events[eventId])
+  const currentEvent = useSelector(state => state.events.current)
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
