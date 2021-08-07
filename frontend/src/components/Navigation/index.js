@@ -25,7 +25,6 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className='nav-container'>
-      {isLoaded && sessionLinks}
       <div className='brand-wrapper'>
         <img src={'pot-icon.jpg'} className='nav-logo'></img>
         <h1 className='brand-name red'>Potluck</h1>
@@ -41,6 +40,7 @@ function Navigation({ isLoaded }) {
           <li>
             <NavLink to="/search" className='nav-li black'>Search</NavLink>
           </li>
+          {isLoaded && sessionLinks}
         </ul>
       </div>
     </div>
