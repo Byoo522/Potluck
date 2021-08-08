@@ -7,7 +7,9 @@ import EventPage from './components/EventPage';
 import EventFormPage from './components/EventFormPage';
 import SingleEventPage from './components/SingleEventPage';
 import EditEventForm from './components/EditEventForm';
+import CommentEditForm from './components/CommentEditForm';
 import * as sessionActions from './store/session';
+
 
 import Navigation from './components/Navigation';
 // import { Modal } from './context/Modal';
@@ -38,10 +40,13 @@ function App() {
             <EventFormPage />
           </Route>
           <Route exact path='/events/:id/'>
-            <SingleEventPage/>
+            <SingleEventPage />
           </Route>
           <Route path='/events/:id/edit'>
-            <EditEventForm/>
+            <EditEventForm />
+          </Route>
+          <Route path='/comments/edit/:id'>
+            <CommentEditForm />
           </Route>
         </Switch>
       )}
