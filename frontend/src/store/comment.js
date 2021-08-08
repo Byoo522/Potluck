@@ -2,7 +2,8 @@ import { csrfFetch } from "./csrf";
 // Defining Action Types as Constants
 export const SET_COMMENTS = 'comments/SET_COMMENTS';
 export const ADD_COMMENT = 'comment/ADD_COMMENT';
-export const REMOVE_COMMENT = 'events/REMOVE_COMMENT';
+export const REMOVE_COMMENT = 'comment/REMOVE_COMMENT';
+export const EDIT_COMMENT = 'comment/EDIT_COMMENT';
 
 // Defining Action Creator - functions that encapsulate the process of creation of an action object.
 const setComments = (comments) => ({
@@ -15,17 +16,17 @@ const addComment = (comment) => ({
   comment,
 })
 
+const editComment = (comment) => ({
+  type: EDIT_COMMENT,
+  comment,
+})
+
 const deleteComment = (commentId) => ({
   type: REMOVE_COMMENT,
   commentId,
 })
 
 // Defining Thunks - middleware that allows you to return functions, rather than just actions, within Redux.
-// export const getComments = (id) => async (dispatch) => {
-//   const res = await csrfFetch(`/api/comments/${id}`);
-//   const comments = await res.json();
-//   dispatch(setComments(comments));
-// }
 export const getComments = (data) => async (dispatch) => {
   const eventId = data.eventId;
   const res = await csrfFetch(`/api/comments/${eventId}`);
@@ -45,6 +46,23 @@ export const postComment = (data) => async (dispatch) => {
   if (res.ok) {
     const comment = await res.json();
     dispatch(addComment(comment.newComment))
+    return res
+  }
+}
+
+// EDIT
+export const updateComment = (data) => async (dispatch) => {
+  const res = await csrfFetch(`/api/comments/edit/${data.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (res.ok) {
+    const updatedComment = await res.json();
+    dispatch(editComment(updatedComment))
     return res
   }
 }
@@ -87,6 +105,9 @@ const commentsReducer = (state = initialState, action) => {
       newState = { ...state };
       delete newState[action.commentId]
       return newState
+    case EDIT_COMMENT:
+      return { ...state, [action.comment.id]: action.comment }
+      // return { ...state, [action.comment.id]: action.comment.content }
     default:
       return state;
   }

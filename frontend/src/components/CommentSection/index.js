@@ -1,26 +1,33 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getComments, removeComment } from '../../store/comment'
 import { useDispatch, useSelector } from 'react-redux'
 import CommentForm from '../CommentForm';
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
+// USE FOR TERNARY
+// import CommentRead from '../CommentRead';
+// import CommentEdit from '../CommentEdit';
 
 
 function CommentSection() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
-  // const eventId = useSelector(state => state?.events[id])
-  // const userId = useSelector((state) => state?.session.user.id)
   const comments = useSelector((state) => state?.comments)
-  const commentId = useSelector(state => state?.comments[id])
-  console.log('LOOK AT THIS HERE!!!!!', commentId)
+  // const [comment, setComment] = useState(comments)
 
-  const payload = {
+  // FOR TERNARY TOGGLE
+  // const [editCommentId, setEditCommentId] = useState(null)
+  // const [editCommentFormData, setCommentFormData] = useState({
+  //   content: ''
+  // })
+
+
+  const data = {
     eventId: id,
   };
 
-
   useEffect(() => {
-    dispatch(getComments(payload));
+    dispatch(getComments(data));
 
   }, [])
 
@@ -31,17 +38,76 @@ function CommentSection() {
     dispatch(removeComment(commentId));
   }
 
+  const handleEditClick = (e) => {
+    const commentId = e.target.value;
+    history.push(`/comments/edit/${commentId}`)
+  }
+
+
+
+  // FOR TERNARY TOGGLE EDIT
+  // const handleEditClick = (e, comment) => {
+  //   e.preventDefault();
+  //   setEditCommentId(comment.id);
+  //   const formValues = {
+  //     content: comment.content,
+  //   }
+
+  //   setCommentFormData(formValues)
+  // }
+
+  // const handleEditFormChange = e => {
+  //   e.preventDefault();
+  //   const fieldContent = e.target.getAttribute('content');
+  //   const fieldValue = e.target.value
+
+  //   const newFormData = { ...editCommentFormData }
+  //   newFormData[fieldContent] = fieldValue
+
+  //   setCommentFormData(newFormData)
+  // }
+
+
 
   return (
     <div className='comments-container'>
-      <h1>Comments sections</h1>
-      {comments && Object.values(comments).map((comment) => (
-        <div>
-          <h4 key={comment?.id}>{comment?.content}</h4>
-          <button>Edit</button>
-          <button value={comment?.id} onClick={handleDelete}>Delete</button>
-        </div>
-      ))}
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Comments</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comments && Object.values(comments).map((comment) => (
+              <tr key={comment?.id}>
+                <td>
+                  {comment?.content}
+                </td>
+                <td>
+                  <button value={comment?.id} onClick={handleEditClick}>Edit</button>
+                </td>
+                <td>
+                  <button value={comment?.id} onClick={handleDelete}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          {/* refactor for ternary toggle */}
+          {/* <tbody className='comments-section'>
+            {comments && Object.values(comments).map((comment, i) => (
+              <>
+                {editCommentId === comment.id ? (
+                  <CommentEdit editCommentFormData={editCommentFormData} handleEditFormChange={handleEditFormChange} />
+                ) : (
+                  <CommentRead comment={comment} handleEditClick={handleEditClick} />)}
+              </>
+            ))}
+          </tbody> */}
+        </table>
+      </div>
       <CommentForm />
     </div>
   )

@@ -70,9 +70,6 @@ export const updateEvent = (event) => async (dispatch) => {
   });
 
   if (res.ok) {
-    // const event = await res.json();
-    // dispatch(editEvent(event.updatedEvent))
-    // const { event } = await res.json();
     const updatedEvent = await res.json();
     dispatch(editEvent(updatedEvent));
     return res
