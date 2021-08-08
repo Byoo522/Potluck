@@ -41,6 +41,8 @@ function SingleEventPage() {
               <th>Date</th>
               <th>Time</th>
               <th>Description</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -51,10 +53,14 @@ function SingleEventPage() {
               <td>{event?.date}</td>
               <td>{event?.time}</td>
               <td>{event?.description}</td>
-              <Link to={`/events/${event?.id}/edit`}>
-                <button className='edit-btn yellow-bg red'>Edit</button>
-              </Link>
-              <button className='delete-btn red-bg yellow' onClick={() => handleDelete(event?.id)}>Delete</button>
+              <td>
+                <Link to={`/events/${event?.id}/edit`}>
+                  <button className='edit-btn yellow-bg red'>Edit</button>
+                </Link>
+              </td>
+              <td>
+                <button className='delete-btn red-bg yellow' onClick={() => handleDelete(event?.id)}>Delete</button>
+              </td>
             </tr>
           </tbody>
         </table>

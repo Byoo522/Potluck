@@ -1,0 +1,13 @@
+.comments-container {
+  background: blue;
+}
+
+.comments {
+  display: flex;
+  justify-content: center;
+}
+
+.comment-input {
+  display: flex;
+  justify-content: center;
+}

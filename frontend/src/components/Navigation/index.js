@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import LoginForm from '../LoginFormModal/LoginForm';
 import './Navigation.css';
 
 
@@ -12,13 +13,39 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <>
+        <div className='nav-wrapper'>
+          <ul className='nav-ul'>
+            <li>
+              <NavLink exact to="/" className='nav-li black'>Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="/events" className='nav-li black'>Events</NavLink>
+            </li>
+            <li>
+              <NavLink to="/search" className='nav-li black'>Search</NavLink>
+            </li>
+          </ul>
+        </div>
+        <ProfileButton user={sessionUser} />
+      </>
     );
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <NavLink to="/signup" className='nav-li black'>Signup</NavLink>
+      <div className='nav-wrapper'>
+          <ul className='nav-ul'>
+            <li>
+            <NavLink to="/login" className='nav-li black'>Login</NavLink>
+            </li>
+            <li>
+            <NavLink to="/signup" className='nav-li black'>Signup</NavLink>
+            </li>
+            <li>
+            <NavLink to="/login" className='nav-li black'>Demo</NavLink>
+            </li>
+          </ul>
+        </div>
       </>
     );
   }
@@ -29,20 +56,7 @@ function Navigation({ isLoaded }) {
         <img src={'pot-icon.jpg'} className='nav-logo'></img>
         <h1 className='brand-name red'>Potluck</h1>
       </div>
-      <div className='nav-wrapper'>
-        <ul className='nav-ul'>
-          <li>
-            <NavLink exact to="/" className='nav-li black'>Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/events" className='nav-li black'>Events</NavLink>
-          </li>
-          <li>
-            <NavLink to="/search" className='nav-li black'>Search</NavLink>
-          </li>
-          {isLoaded && sessionLinks}
-        </ul>
-      </div>
+      {isLoaded && sessionLinks}
     </div>
   );
 }

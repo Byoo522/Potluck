@@ -11,12 +11,12 @@ function EditEventForm() {
   const currentEvent = useSelector(state => state.events.current)
   const dispatch = useDispatch();
   const history = useHistory();
-  const [title, setTitle] = useState('');
-  const [max_guests, setMax_Guests] = useState('');
-  const [location, setLocation] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState(currentEvent.title);
+  const [max_guests, setMax_Guests] = useState(currentEvent.max_guests);
+  const [location, setLocation] = useState(currentEvent.location);
+  const [date, setDate] = useState(currentEvent.date);
+  const [time, setTime] = useState(currentEvent.time);
+  const [description, setDescription] = useState(currentEvent.description);
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateMax_Guests = (e) => setMax_Guests(e.target.value);
