@@ -1,7 +1,6 @@
 .profile-dropdown {
   display: flex;
   flex-direction: row;
-
 }
 
 .nav-container {
@@ -58,14 +57,19 @@
 
 .brand-name {
   margin: auto;
-  align-items: baseline;
+  text-align: end;
   font-family: 'Style Script', cursive;
   font-size: 55px;
-}
+  }
 
 .brand-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
+}
+
+.brand-name-container {
+  margin-top: 10px;
+  margin-left: 5px;
 }
