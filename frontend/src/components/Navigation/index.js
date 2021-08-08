@@ -33,16 +33,13 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-      <div className='nav-wrapper'>
+        <div className='nav-wrapper'>
           <ul className='nav-ul'>
             <li>
-            <NavLink to="/login" className='nav-li black'>Login</NavLink>
+              <NavLink to="/login" className='nav-li black'>Login</NavLink>
             </li>
             <li>
-            <NavLink to="/signup" className='nav-li black'>Signup</NavLink>
-            </li>
-            <li>
-            <NavLink to="/login" className='nav-li black'>Demo</NavLink>
+              <NavLink to="/signup" className='nav-li black'>Signup</NavLink>
             </li>
           </ul>
         </div>
@@ -54,7 +51,9 @@ function Navigation({ isLoaded }) {
     <div className='nav-container'>
       <div className='brand-wrapper'>
         <img src={'pot-icon.jpg'} className='nav-logo'></img>
-        <h1 className='brand-name red'>Potluck</h1>
+        <div className='brand-name-container'>
+          <h1 className='brand-name red'>Potluck</h1>
+        </div>
       </div>
       {isLoaded && sessionLinks}
     </div>
