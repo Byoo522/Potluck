@@ -3,6 +3,7 @@ import { getComments, removeComment } from '../../store/comment'
 import { useDispatch, useSelector } from 'react-redux'
 import CommentForm from '../CommentForm';
 import { useParams, useHistory } from 'react-router-dom'
+import './CommentSection.css'
 // USE FOR TERNARY
 // import CommentRead from '../CommentRead';
 // import CommentEdit from '../CommentEdit';
@@ -71,7 +72,7 @@ function CommentSection() {
 
   return (
     <div className='comments-container'>
-      <div>
+      <div className='comments'>
         <table>
           <thead>
             <tr>
@@ -108,7 +109,9 @@ function CommentSection() {
           </tbody> */}
         </table>
       </div>
-      <CommentForm />
+      <div className='comment-input'>
+        <CommentForm />
+      </div>
     </div>
   )
 }
