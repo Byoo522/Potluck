@@ -1,26 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getComments, removeComment } from '../../store/comment'
 import { useDispatch, useSelector } from 'react-redux'
 import CommentForm from '../CommentForm';
+import CommentRead from '../CommentRead';
+import CommentEdit from '../CommentEdit';
 import { useParams } from 'react-router-dom'
 
 
 function CommentSection() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  // const eventId = useSelector(state => state?.events[id])
-  // const userId = useSelector((state) => state?.session.user.id)
   const comments = useSelector((state) => state?.comments)
-  const commentId = useSelector(state => state?.comments[id])
-  console.log('LOOK AT THIS HERE!!!!!', commentId)
+  const [editCommentId, setEditCommentId] = useState(null)
+  const [editCommentFormData, setCommentFormData] = useState({
+    content: ''
+  })
 
-  const payload = {
+  const data = {
     eventId: id,
   };
 
 
+
   useEffect(() => {
-    dispatch(getComments(payload));
+    dispatch(getComments(data));
 
   }, [])
 
@@ -31,17 +34,68 @@ function CommentSection() {
     dispatch(removeComment(commentId));
   }
 
+  const handleEditClick = (e, comment) => {
+    e.preventDefault();
+    setEditCommentId(comment.id);
+    const formValues = {
+      content: comment.content,
+    }
+
+    setCommentFormData(formValues)
+  }
+
+  const handleEditFormChange = e => {
+    e.preventDefault();
+    const fieldContent = e.target.getAttribute('content');
+    const fieldValue = e.target.value
+
+    const newFormData = { ...editCommentFormData }
+    newFormData[fieldContent] = fieldValue
+
+    setCommentFormData(newFormData)
+  }
+
+  const handleEditFormSave = (e) => {
+    e.preventDefault();
+    const editedContent = {
+      id: editCommentId,
+      content: editCommentFormData.content
+    }
+
+    // need to work dispatch
+    const newContent = [...comments];
+
+    const index = comments.findIndex((comment) => comment.id === editCommentId);
+
+    newContent[index] = editedContent;
+
+
+  }
 
   return (
     <div className='comments-container'>
-      <h1>Comments sections</h1>
-      {comments && Object.values(comments).map((comment) => (
-        <div>
-          <h4 key={comment?.id}>{comment?.content}</h4>
-          <button>Edit</button>
-          <button value={comment?.id} onClick={handleDelete}>Delete</button>
-        </div>
-      ))}
+      <form onSubmit={handleEditFormSave}>
+        <table>
+          <thead>
+            <tr>
+              <th>Comments</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody className='comments-section'>
+            {comments && Object.values(comments).map((comment, i) => (
+              <>
+                {editCommentId === comment.id ? (
+                <CommentEdit editCommentFormData={editCommentFormData} handleEditFormChange={handleEditFormChange}/>
+                ) : (
+                  <CommentRead comment={comment} handleEditClick={handleEditClick} />)}
+                {/* <button>Edit</button> */}
+                <button value={comment?.id} onClick={handleDelete}>Delete</button>
+              </>
+            ))}
+          </tbody>
+        </table>
+      </form>
       <CommentForm />
     </div>
   )
