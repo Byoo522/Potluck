@@ -30,49 +30,62 @@ function SignupFormPage() {
 
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
+      <div className='signup-page-container'>
+        <div className='signup-cont font'>
+          <form onSubmit={handleSubmit} className='signup-form'>
+            <div className='new-event-header'>
+              <h1>Sign Up</h1>
+            </div>
+            <ul>
+              {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
+            <label>
+              Email
+              <input
+                type="text"
+                className='new-event-input font'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Username
+              <input
+                type="text"
+                className='new-event-input font'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Password
+              <input
+                type="password"
+                className='new-event-input font'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Confirm Password
+              <input
+                type="password"
+                className='new-event-input font'
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </label>
+            <div className='new-event-submit'>
+              <button className='button font yellow-bg' type="submit">Sign Up</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
     </>
   );
 }
