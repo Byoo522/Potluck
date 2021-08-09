@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getComments, postComment } from '../../store/comment'
 import { useDispatch, useSelector, } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
+import './CommentForm.css'
 
 
 
@@ -29,16 +30,17 @@ function CommentForm() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
+    <div className='post-comment'>
+      <form onSubmit={handleSubmit} className='comment-form'>
+        <textarea
           type='text-area'
           placeholder='Add a comment...'
           required
+          rows='7'
           value={content}
           onChange={addContent}
         />
-        <button type='submit'>Post</button>
+        <button type='submit' className='button yellow-bg red comment-post-btn font'>Post</button>
       </form>
     </div>
   )

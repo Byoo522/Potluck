@@ -1,0 +1,18 @@
+.post-comment {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 20px;
+}
+
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+}
+
+.comment-post-btn {
+  font-size: 20px;
+}

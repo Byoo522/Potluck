@@ -71,14 +71,14 @@ function CommentSection() {
 
 
   return (
-    <div className='comments-container'>
+    <div className='comment-container'>
       <div className='comments'>
         <table>
           <thead>
             <tr>
               <th>Comments</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -88,10 +88,10 @@ function CommentSection() {
                   {comment?.content}
                 </td>
                 <td>
-                  <button value={comment?.id} onClick={handleEditClick}>Edit</button>
+                  <button value={comment?.id} onClick={handleEditClick}><i class="far fa-edit"></i></button>
                 </td>
                 <td>
-                  <button value={comment?.id} onClick={handleDelete}>Delete</button>
+                  <button value={comment?.id} onClick={handleDelete}><i class="far fa-trash-alt"></i></button>
                 </td>
               </tr>
             ))}
@@ -109,9 +109,7 @@ function CommentSection() {
           </tbody> */}
         </table>
       </div>
-      <div className='comment-input'>
-        <CommentForm />
-      </div>
+      <CommentForm />
     </div>
   )
 }
