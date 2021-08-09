@@ -51,8 +51,8 @@ function EditEventForm() {
 
   return (
     <div className='edit-event-page-container' >
-      <div className='new-event-container font'>
-        <form >
+      <div className='new-event-container font log-cont'>
+        <form>
           <div className='new-event-header'>
             <h1 className='font red'>Revision Form</h1>
           </div>

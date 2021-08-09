@@ -19,6 +19,7 @@ function LoginFormPage() {
 
   if (sessionUser) return <Redirect to="/" />;
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -42,34 +43,46 @@ function LoginFormPage() {
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-        <button type='button' onClick={handleDemoLogin}>Demo Login</button>
-      </form>
+      <div className='login-page-container'>
+        <div className='log-cont font'>
+          <form onSubmit={handleSubmit} className='login-form'>
+            <div className='new-event-header'>
+              <h1>Log In</h1>
+            </div>
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+            <label>
+              Username or Email
+              <input
+                type="text"
+                className='new-event-input font'
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Password
+              <input
+                type="password"
+                className='new-event-input font'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+            <div className='new-event-submit'>
+              <button type="submit" className='login-btn button font yellow-bg'>Log In</button>
+            </div>
+            <div className='new-event-submit'>
+              <button type='button' onClick={handleDemoLogin} className='login-btn button font yellow-bg'>Demo Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 }
