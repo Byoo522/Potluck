@@ -29,3 +29,23 @@
   /* margin-top: 30px; */
   /* padding: none; */
 }
+
+
+.event-page-link {
+display: inline-block;
+transition: .3s;
+font-weight:bold;
+text-decoration:none;
+}
+
+.event-page-link:hover {
+-webkit-transform: scale(1.2);
+transform: scale(1.2);
+}
+
+.event-page-link {
+position: relative;
+display: inline-block;
+transition: .3s;
+text-decoration: none;
+}

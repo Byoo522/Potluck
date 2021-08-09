@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import { createEvent, getEvents } from "../../store/event";
 import { useDispatch, useSelector } from "react-redux";
+import './EventFormPage.css'
 
 
 function EventFormPage() {
@@ -48,48 +49,63 @@ function EventFormPage() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Title for Event"
-          min="1"
-          required
-          value={title}
-          onChange={addTitle} />
-        <input
-          type="date"
-          placeholder="Date"
-          required
-          value={date}
-          onChange={addDate} />
-        <input
-          type="time"
-          placeholder="Time"
-          required
-          value={time}
-          onChange={addTime} />
-        <input
-          type="number"
-          placeholder="Max Number of Guests"
-          min="1"
-          required
-          value={max_guests}
-          onChange={addMax_Guests} />
-        <input
-          type="text"
-          placeholder="Location"
-          min="1"
-          required
-          value={location}
-          onChange={addLocation} />
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={addDescription} />
-        <button type='submit'>Create</button>
-      </form>
+    <div className='new-event-page-container'>
+      <div className='new-event-container font'>
+        <form onSubmit={handleSubmit}>
+          <h1>Create a New Event</h1>
+          <label>Title</label>
+          <input
+            type="text"
+            placeholder="Title for Event"
+            min="1"
+            required
+            className='new-event-input font'
+            value={title}
+            onChange={addTitle} />
+          <label>Date</label>
+          <input
+            type="date"
+            placeholder="Date"
+            required
+            className='new-event-input font'
+            value={date}
+            onChange={addDate} />
+          <label>Time</label>
+          <input
+            type="time"
+            placeholder="Time"
+            required
+            className='new-event-input font'
+            value={time}
+            onChange={addTime} />
+          <label>Max Guests</label>
+          <input
+            type="number"
+            placeholder="Max Number of Guests"
+            min="1"
+            required
+            className='new-event-input font'
+            value={max_guests}
+            onChange={addMax_Guests} />
+          <label>Location</label>
+          <input
+            type="text"
+            placeholder="Location"
+            min="1"
+            required
+            className='new-event-input font'
+            value={location}
+            onChange={addLocation} />
+          <label>Description</label>
+          <textarea
+            type="text"
+            placeholder="Description"
+            className='new-event-textarea font'
+            value={description}
+            onChange={addDescription} />
+          <button type='submit' className='button font yellow-bg'>Create</button>
+        </form>
+      </div>
     </div>
   )
 }

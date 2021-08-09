@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { updateEvent, getOneEvent, getEvents } from "../../store/event";
 import { useDispatch, useSelector } from "react-redux";
+import './EditEventForm.css'
 
 
 function EditEventForm() {
@@ -49,7 +50,7 @@ function EditEventForm() {
   }
 
   return (
-    <div>
+    <div >
       <h4>Edit Event Form</h4>
       <form >
         <input
@@ -85,10 +86,12 @@ function EditEventForm() {
           required
           value={location}
           onChange={updateLocation} />
-        <input
+        <textarea
           type="text"
           placeholder={`${currentEvent.description}`}
           value={description}
+          rows='6'
+          columns='100'
           onChange={updateDescription} />
         <button type='submit' onClick={handleUpdate}>Update</button>
       </form>
