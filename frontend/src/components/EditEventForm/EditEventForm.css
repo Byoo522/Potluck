@@ -4,8 +4,25 @@
   align-content: center;
   background-image: url('../../Images/korea-food.jpg');
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
-  margin-top: 0;
-  z-index: 0;
+  background-position: top;
+  height: 900px;
 }
+
+.edit-form {
+  height: 700px;
+}
+
+.edit-event-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  margin-top: 25px;
+  padding: 2rem;
+  width: 400px;
+  height: 650px;
+  margin-bottom: 25px;
+  }
