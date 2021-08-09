@@ -46,3 +46,17 @@
   margin-bottom: 16px;
   resize: vertical;
 }
+
+.new-event-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+ }
+
+.new-event-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}

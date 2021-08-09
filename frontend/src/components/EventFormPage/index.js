@@ -52,7 +52,9 @@ function EventFormPage() {
     <div className='new-event-page-container'>
       <div className='new-event-container font'>
         <form onSubmit={handleSubmit}>
-          <h1>Create a New Event</h1>
+          <div className='new-event-header'>
+            <h1 className='font red'>Create a New Event</h1>
+          </div>
           <label>Title</label>
           <input
             type="text"
@@ -103,7 +105,9 @@ function EventFormPage() {
             className='new-event-textarea font'
             value={description}
             onChange={addDescription} />
-          <button type='submit' className='button font yellow-bg'>Create</button>
+          <div className='new-event-submit'>
+            <button type='submit' className='button font yellow-bg'>Create</button>
+          </div>
         </form>
       </div>
     </div>

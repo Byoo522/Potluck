@@ -1,1 +1,11 @@
-
+.edit-event-page-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-image: url('../../Images/korea-food.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  margin-top: 0;
+  z-index: 0;
+}
