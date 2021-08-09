@@ -76,9 +76,7 @@ function SingleEventPage() {
           </tbody>
         </table>
       </div>
-      <div className='comment-section-container'>
-        <CommentSection />
-      </div>
+      <CommentSection />
     </div >
   )
 }
