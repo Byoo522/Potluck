@@ -1,8 +1,18 @@
+.event-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-image: url('../../Images/food-event.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 900px;
+}
+
 .form-wrapper {
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
 }
 
 .event-form {
@@ -10,14 +20,12 @@ margin-top: 3rem;
 
 }
 
-.edit-btn {
-
-}
-
-.delete-btn {
-
-}
-
-.create-event-btn {
-
+.create-btn-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 30px;
+  width: 600px;
+  /* margin-top: 30px; */
+  /* padding: none; */
 }

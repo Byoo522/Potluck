@@ -1,0 +1,50 @@
+.home-container {
+ margin-top: auto;
+ display:flex;
+ justify-content: center;
+ align-content: center;
+}
+
+.home-image-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-image: url('../../Images/potluck-landing.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1080px;
+  width: 1920px;
+  z-index: 0;
+}
+
+.welcome-msg {
+  z-index: 2;
+  color: black;
+  font-size: xx-large;
+  margin-top: 5rem;
+  text-align: center;
+
+}
+
+.overlay {
+  color: #fff;
+  z-index: 1;
+}
+
+.overlay-msg {
+}
+
+.text {
+  opacity: 1;
+  text-shadow: 2px 2px black;
+}
+
+.brand-text {
+  font-family: 'Style Script', cursive;
+  text-shadow: 1px 1px black;
+  margin-bottom: 0;
+}
+
+.create {
+  font-size: 25px;
+}

@@ -21,29 +21,33 @@ const EventPage = () => {
 
 
   return (
-    <div className='form-wrapper'>
-      <table className='event-form'>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {events && Object.values(events).map((event) => (
-            <tr key={event?.id}>
-              <Link to={`/events/${event.id}`}>
-                <td>{event?.title}</td>
-              </Link>
-              <td>{event?.date}</td>
+    <div className='event-page-wrapper'>
+      <div className='form-wrapper'>
+        <table className='styled-table'>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
             </tr>
-          ))}
-          <Link to='/events/new'>
-            <button className='create-event-btn yellow-bg red'>Create Event</button>
-          </Link>
-        </tbody>
-      </table>
-    </div >
+          </thead>
+          <tbody>
+            {events && Object.values(events).map((event) => (
+              <tr key={event?.id}>
+                <Link to={`/events/${event.id}`}>
+                  <td>{event?.title}</td>
+                </Link>
+                <td>{event?.date}</td>
+              </tr>
+            ))}
+            <div className='create-btn-container'>
+              <Link to='/events/new'>
+                <button className='button yellow-bg red'>Create Event</button>
+              </Link>
+            </div>
+          </tbody>
+        </table>
+      </div >
+    </div>
   )
 }
 
