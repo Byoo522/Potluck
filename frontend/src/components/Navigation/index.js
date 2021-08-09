@@ -22,9 +22,9 @@ function Navigation({ isLoaded }) {
             <li>
               <NavLink to="/events" className='nav-li black'>Events</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/search" className='nav-li black'>Search</NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
         <ProfileButton user={sessionUser} />

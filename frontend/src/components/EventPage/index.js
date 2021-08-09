@@ -26,14 +26,14 @@ const EventPage = () => {
         <table className='styled-table'>
           <thead>
             <tr>
-              <th>Title</th>
+              <th>Upcoming Events</th>
               {/* <th>Date</th> */}
             </tr>
           </thead>
           <tbody>
             {events && Object.values(events).map((event) => (
               <tr key={event?.id}>
-                <Link to={`/events/${event.id}`}>
+                <Link to={`/events/${event.id}`} className='event-page-link font red'>
                   <td>{event?.title}</td>
                 </Link>
                 {/* <td>{event?.date}</td> */}
