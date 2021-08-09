@@ -69,7 +69,7 @@ body {
 .styled-table thead tr {
   background-color: #FFC72C;
   color: #27251F;
-  text-align: left;
+  text-align: center;
 }
 
 .styled-table th,
@@ -79,6 +79,7 @@ body {
 
 .styled-table tbody tr {
   border-bottom: 1px solid #dddddd;
+  text-align: center;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
@@ -96,4 +97,51 @@ body {
 .styled-table tbody tr.active-row {
   font-weight: bold;
   color: #FFC72C;
+}
+
+/* left align */
+.styled-table-left {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table-left thead tr {
+  background-color: #FFC72C;
+  color: #27251F;
+  text-align: left;
+}
+
+.styled-table-left th,
+.styled-table-left td {
+  padding: 12px 15px;
+  }
+
+.styled-table-left tbody tr {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+}
+
+.styled-table-left tbody tr:nth-of-type(even) {
+  background-color:lightgoldenrodyellow;
+}
+
+.styled-table-left tbody tr:nth-of-type(odd) {
+  background-color: #f3f3f3;
+}
+
+.styled-table-left tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.styled-table-left tbody tr.active-row {
+  font-weight: bold;
+  color: #FFC72C;
+}
+
+.title-center {
+  text-align: left;
 }

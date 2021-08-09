@@ -1,0 +1,11 @@
+.form-wrapper-single {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-image: url('../../Images/food-event-people.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: 0;
+  z-index: 0;
+}

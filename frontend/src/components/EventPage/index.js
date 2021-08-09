@@ -27,7 +27,7 @@ const EventPage = () => {
           <thead>
             <tr>
               <th>Title</th>
-              <th>Date</th>
+              {/* <th>Date</th> */}
             </tr>
           </thead>
           <tbody>
@@ -36,7 +36,7 @@ const EventPage = () => {
                 <Link to={`/events/${event.id}`}>
                   <td>{event?.title}</td>
                 </Link>
-                <td>{event?.date}</td>
+                {/* <td>{event?.date}</td> */}
               </tr>
             ))}
             <div className='create-btn-container'>
