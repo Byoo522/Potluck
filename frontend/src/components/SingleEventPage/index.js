@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getEvents, removeEvent, selectEvent } from "../../store/event";
 import CommentSection from "../CommentSection";
 import './SingleEventPage.css';
+
 // import { csrfFetch } from "../../store/csrf";
 
 
@@ -31,37 +32,47 @@ function SingleEventPage() {
 
   return event && (
     <div className='single-event-container'>
-      <div className='form-wrapper'>
-        <table className='event-form'>
+      <div className='form-wrapper-single'>
+        <table className='styled-table-left'>
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Max Guests</th>
-              <th>Location</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Description</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th></th>
+              <th className='title-center'>Event</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <th>Title</th>
               <td>{event?.title}</td>
-              <td>{event?.max_guests}</td>
-              <td>{event?.location}</td>
-              <td>{event?.date}</td>
-              <td>{event?.time}</td>
-              <td>{event?.description}</td>
-              <td>
-                <Link to={`/events/${event?.id}/edit`}>
-                  <button className='edit-btn yellow-bg red'>Edit</button>
-                </Link>
-              </td>
-              <td>
-                <button className='delete-btn red-bg yellow' onClick={() => handleDelete(event?.id)}>Delete</button>
-              </td>
             </tr>
+            <tr>
+              <th>Max Guests</th>
+              <td>{event?.max_guests}</td>
+            </tr>
+            <tr>
+              <th>Location</th>
+              <td>{event?.location}</td>
+            </tr>
+            <tr>
+              <th>Date</th>
+              <td>{event?.date}</td>
+            </tr>
+            <tr>
+              <th>Time</th>
+              <td>{event?.time}</td>
+            </tr>
+            <tr>
+              <th>Description</th>
+              <td>{event?.description}</td>
+            </tr>
+            <td>
+              <Link to={`/events/${event?.id}/edit`}>
+                <button className='button yellow-bg red'>Edit</button>
+              </Link>
+            </td>
+            <td>
+              <button className='button red-bg yellow' onClick={() => handleDelete(event?.id)}>Delete</button>
+            </td>
           </tbody>
         </table>
       </div>
