@@ -88,11 +88,11 @@ function CommentSection() {
                   {comment?.content}
                 </td>
                 <td>
-                  <button value={comment?.id} onClick={handleEditClick}>Edit</button>
+                  <button value={comment?.id} onClick={handleEditClick} className='button yellow-bg red comment-post-btn font'>Edit</button>
                   {/* <button value={comment?.id} onClick={handleEditClick}><i class="far fa-edit"></i></button> */}
                 </td>
                 <td>
-                  <button value={comment?.id} onClick={handleDelete}>Delete</button>
+                  <button value={comment?.id} onClick={handleDelete} className='button yellow-bg red comment-post-btn font'>Delete</button>
                   {/* <button value={comment?.id} onClick={handleDelete}><i class="far fa-trash-alt"></i></button> */}
                 </td>
               </tr>
