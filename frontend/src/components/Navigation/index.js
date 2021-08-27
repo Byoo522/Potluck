@@ -49,13 +49,19 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className='nav-container'>
-      <div className='brand-wrapper'>
-        <img src={'pot-icon.jpg'} className='nav-logo'></img>
-        <div className='brand-name-container'>
-          <h1 className='brand-name red'>Potluck</h1>
+      <div className='left-nav'>
+        <div className='brand-wrapper'>
+          <a href='/' className='nav-logo'>
+            <img src={'pot-icon.jpg'} className='nav-logo'></img>
+          </a>
+          <div className='brand-name-container'>
+            <h1 className='brand-name red'>Potluck</h1>
+          </div>
         </div>
       </div>
-      {isLoaded && sessionLinks}
+      <div className='right-nav'>
+        {isLoaded && sessionLinks}
+      </div>
     </div>
   );
 }
