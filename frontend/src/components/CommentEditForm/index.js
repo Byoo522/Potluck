@@ -30,7 +30,7 @@ function CommentEditForm() {
   return (
     <div>
       <h4>Revise your comment</h4>
-      <form>
+      <form className='comment-form'>
         <input
           type="text"
           row='5'
