@@ -18,12 +18,15 @@
 }
 
 .welcome-msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   z-index: 2;
   color: black;
   font-size: xx-large;
   margin-top: 5rem;
   text-align: center;
-
+  align-content: center;
 }
 
 .overlay {
@@ -36,12 +39,12 @@
 
 .text {
   opacity: 1;
-  text-shadow: 2px 2px black;
+  text-shadow: 3px 3px black;
 }
 
 .brand-text {
   font-family: 'Style Script', cursive;
-  text-shadow: 1px 1px black;
+  text-shadow: 4px 4px black;
   margin-bottom: 0;
 }
 

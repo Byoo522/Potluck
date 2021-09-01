@@ -10,4 +10,8 @@
   z-index: 0;
 }
 
-
+.title-center {
+  /* display: flex; */
+  justify-content: center;
+  /* align-items: center; */
+}

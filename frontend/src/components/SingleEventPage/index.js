@@ -36,8 +36,7 @@ function SingleEventPage() {
         <table className='styled-table-left'>
           <thead>
             <tr>
-              <th></th>
-              <th className='title-center'>Event</th>
+              <th colSpan='2' className='title-center'>Event</th>
             </tr>
           </thead>
           <tbody>
