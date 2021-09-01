@@ -19,14 +19,10 @@ function Home() {
             </div>
             <div className='about-me-container'>
               <a href='https://github.com/Byoo522'>
-                <button className='button font red'>
-                  <i class="fab fa-github-square">Github</i>
-                </button>
+                <i class="fab fa-github-square"></i>
               </a>
               <a href='https://www.linkedin.com/in/benjaminyoo/'>
-                <button className='button profile font red'>
-                  <i class="fab fa-linkedin">LinkedIn</i>
-                </button>
+                <i class="fab fa-linkedin"></i>
               </a>
             </div>
           </div>
