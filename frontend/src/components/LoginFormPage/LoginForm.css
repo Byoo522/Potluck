@@ -9,9 +9,9 @@
   background-image: url('../../Images/new-event-form-img.jpg');
   background-repeat: no-repeat;
   background-position: top;
-  background-size: 1920px 900px;
+  /* background-size: 1920px 900px; */
   margin-top: 0;
-  height: 1080px;
+  height: 100vh;
   z-index: 0;
 }
 
@@ -33,4 +33,5 @@
   width: 400px;
   height: 500px;
   margin-bottom: 25px;
+  box-shadow: 2px 2px black;
 }

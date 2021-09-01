@@ -5,7 +5,7 @@
   background-image: url('../../Images/food-event.jpg');
   background-repeat: no-repeat;
   background-position: top;
-  height: 900px;
+  height: 100vh;
 }
 
 .form-wrapper {
@@ -17,7 +17,6 @@
 
 .event-form {
   font-family: 'Roboto', sans-serif;
-
 }
 
 .create-btn-container {
@@ -26,26 +25,24 @@
   align-content: center;
   height: 30px;
   width: 600px;
-  /* margin-top: 30px; */
-  /* padding: none; */
 }
 
 
 .event-page-link {
-display: inline-block;
-transition: .3s;
-font-weight:bold;
-text-decoration:none;
+  display: inline-block;
+  transition: .3s;
+  font-weight:bold;
+  text-decoration:none;
 }
 
 .event-page-link:hover {
--webkit-transform: scale(1.2);
-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .event-page-link {
-position: relative;
-display: inline-block;
-transition: .3s;
-text-decoration: none;
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+  text-decoration: none;
 }

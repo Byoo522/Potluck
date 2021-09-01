@@ -9,9 +9,8 @@
   background-image: url('../../Images/fruits.png');
   background-repeat: no-repeat;
   background-position: top;
-  background-size: 1920px 900px;
   margin-top: 0;
-  height: 1080px;
+  height: 100vh;
   z-index: 0;
 }
 
