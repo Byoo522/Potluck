@@ -51,3 +51,28 @@
 .create {
   font-size: 25px;
 }
+
+/* about me links */
+.about-me-container {
+  display: flex;
+  justify-content: center;
+}
+
+.fa-linkedin {
+  color: #DA291C;
+  margin: 10px;
+  size: 5x;
+}
+
+.fa-linkedin:hover {
+  color: #fff;
+}
+
+.fa-github-square {
+  color: #DA291C;
+  margin: 10px;
+}
+
+.fa-github-square:hover {
+  color: #fff;
+}

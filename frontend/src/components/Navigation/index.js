@@ -60,7 +60,9 @@ function Navigation({ isLoaded }) {
         </div>
       </div>
       <div className='right-nav'>
-        {isLoaded && sessionLinks}
+        <div className='brand-wrapper'>
+          {isLoaded && sessionLinks}
+        </div>
       </div>
     </div>
   );

@@ -22,14 +22,6 @@ function Home() {
                 <button className='create button font yellow-bg'>Create Event</button>
               </Link>
             </div>
-            <div className='about-me-container'>
-              <a href='https://github.com/Byoo522'>
-                <i class="fab fa-github-square"></i>
-              </a>
-              <a href='https://www.linkedin.com/in/benjaminyoo/'>
-                <i class="fab fa-linkedin"></i>
-              </a>
-            </div>
           </div>
         </div>
       </div>
