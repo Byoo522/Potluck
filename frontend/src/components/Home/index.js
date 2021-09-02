@@ -1,10 +1,15 @@
 import React from 'react';
 import './Home.css'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
 
 
 function Home() {
+  const sessionUser = useSelector(state => state.session.user);
 
+  if (!sessionUser) return <Redirect to="/login" />;
 
   return (
     <div className='home-container'>
@@ -16,18 +21,6 @@ function Home() {
               <Link to='/events'>
                 <button className='create button font yellow-bg'>Create Event</button>
               </Link>
-            </div>
-            <div className='about-me-container'>
-              <a href='https://github.com/Byoo522'>
-                <button className='button font red'>
-                  <i class="fab fa-github-square">Github</i>
-                </button>
-              </a>
-              <a href='https://www.linkedin.com/in/benjaminyoo/'>
-                <button className='button profile font red'>
-                  <i class="fab fa-linkedin">LinkedIn</i>
-                </button>
-              </a>
             </div>
           </div>
         </div>

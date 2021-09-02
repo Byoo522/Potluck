@@ -10,14 +10,11 @@ function LoginFormPage() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  // const [demoCredential, setDemoCredential] = useState("demo@user.io");
-  // const [demoPassword, setDemoPassword] = useState("password");
   const [errors, setErrors] = useState([]);
 
-  const demoUser = "demo@user.io";
-  const demoPassword = "password";
 
   if (sessionUser) return <Redirect to="/" />;
+
 
 
   const handleSubmit = (e) => {
@@ -30,16 +27,17 @@ function LoginFormPage() {
       });
   };
 
-  const handleDemoSubmit = () => {
-    return dispatch(sessionActions.login({ credential, password }))
+  const handleDemoSubmit = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
 
-  const handleDemoLogin = (e) => {
-    e.preventDefault();
-    setCredential('demo@user.io')
-    setPassword('password')
-    handleDemoSubmit()
-  };
+
 
   return (
     <>
@@ -78,7 +76,7 @@ function LoginFormPage() {
               <button type="submit" className='login-btn button font yellow-bg'>Log In</button>
             </div>
             <div className='new-event-submit'>
-              <button type='button' onClick={handleDemoLogin} className='login-btn button font yellow-bg'>Demo Login</button>
+              <button type='button' onClick={handleDemoSubmit} className='login-btn button font yellow-bg'>Demo Login</button>
             </div>
           </form>
         </div>

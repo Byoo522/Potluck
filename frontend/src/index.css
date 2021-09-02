@@ -152,4 +152,38 @@ body {
 /* footer */
 footer {
   background-color: #FFC72C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.footer-wrap {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+}
+
+.foot-name {
+  font-family: 'Roboto';
+  text-decoration: none;
+  color: #DA291C;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.foot-name:hover {
+  color: #f3f3f3;
+}
+
+.footer-links {
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  size: 30px;
+}
+
+.fa-github-square {
+  size: 30px;
 }

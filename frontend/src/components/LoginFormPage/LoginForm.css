@@ -33,5 +33,10 @@
   width: 400px;
   height: 500px;
   margin-bottom: 25px;
-  box-shadow: 2px 2px black;
+  box-shadow: 2px 2px rgb(110, 109, 109);
+}
+
+li {
+  list-style: none;
+  color: red;
 }
