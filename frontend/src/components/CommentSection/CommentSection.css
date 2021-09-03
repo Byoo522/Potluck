@@ -15,3 +15,24 @@
   display: flex;
   justify-content: center;
 }
+
+.comment-table {
+  max-width: 640px;
+}
+
+
+.fa-edit {
+  background-color: #FFC72C;
+  color: #DA291C;
+}
+
+.fa-trash-alt {
+  background-color: #FFC72C;
+  color: #DA291C;
+}
+
+.action-button {
+  background-color: #FFC72C;
+  border-radius: 3px;
+  margin: 2px;
+}
