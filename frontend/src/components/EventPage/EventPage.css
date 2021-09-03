@@ -4,7 +4,12 @@
   align-content: center;
   background-image: url('../../Images/food-event.jpg');
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  width: 1920px;
   height: 100vh;
 }
 
