@@ -16,6 +16,8 @@
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  width: 1920px;
+  height: 100vh;
   /* height: 1080px;
   width: 1920px; */
   z-index: 0;
