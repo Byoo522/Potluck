@@ -12,6 +12,10 @@
   background-image: url('../../Images/potluck-landing.jpg');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   height: 1080px;
   width: 1920px;
   z-index: 0;
