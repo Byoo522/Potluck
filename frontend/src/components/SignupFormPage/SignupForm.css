@@ -8,8 +8,12 @@
   align-content: center;
   background-image: url('../../Images/fruits.png');
   background-repeat: no-repeat;
-  background-position: top;
-  margin-top: 0;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  width: 1920px;
   height: 100vh;
   z-index: 0;
 }

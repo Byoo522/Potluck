@@ -8,9 +8,12 @@
   align-content: center;
   background-image: url('../../Images/new-event-form-img.jpg');
   background-repeat: no-repeat;
-  background-position: top;
-  /* background-size: 1920px 900px; */
-  margin-top: 0;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  width: 1920px;
   height: 100vh;
   z-index: 0;
 }
