@@ -20,8 +20,8 @@
 }
 
 .edit-form {
-  height: 700px;
-  margin-top: 300px;
+  max-height: 700px;
+  margin-top: 30px;
 }
 
 .edit-event-container {
