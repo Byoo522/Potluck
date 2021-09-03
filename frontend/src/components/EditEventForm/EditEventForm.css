@@ -1,3 +1,9 @@
+.edit-wrapper {
+ display:flex;
+ justify-content: center;
+ align-content: center;
+}
+
 .edit-event-page-container {
   display: flex;
   justify-content: center;
