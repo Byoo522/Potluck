@@ -2,6 +2,15 @@
   display: flex;
   justify-content: center;
   align-content: center;
+  background-image: url('../../Images/korea-food.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  width: 1920px;
+  height: 100vh;
 }
 
 .edit-form {
@@ -15,20 +24,11 @@
   justify-content: center;
   align-content: center;
   align-items: center;
-  background-image: url('../../Images/korea-food.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  width: 1920px;
-  height: 100vh;
   border-radius: 5px;
   background-color: #f2f2f2;
-  /* margin-top: 25px;
+  margin-top: 25px;
   padding: 2rem;
   width: 400px;
   height: 650px;
-  margin-bottom: 25px; */
+  margin-bottom: 25px;
 }
