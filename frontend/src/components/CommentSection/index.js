@@ -25,33 +25,41 @@ function CommentSection() {
 
   // need to pass in the comment id
   const handleDelete = (e) => {
+    e.preventDefault();
     const commentId = e.target.value;
     dispatch(removeComment(commentId));
   }
 
   const handleEditClick = (e) => {
+     e.preventDefault();
     const commentId = e.target.value;
     history.push(`/comments/edit/${commentId}`)
   }
 
+
   return (
     <div className='comment-container'>
       <div className='comments'>
-        <table className='comment-table'>
+        <table>
           <thead>
             <tr>
-              <th colSpan='3'>Comments</th>
+              <th>Comments</th>
+
             </tr>
           </thead>
           <tbody>
             {comments && Object.values(comments).map((comment) => (
               <tr key={comment?.id}>
-                <td colSpan='3'>
+                <td>
                   {comment?.content}
                 </td>
                 <td>
-                  <button value={comment?.id} onClick={handleEditClick} className='action-button'><i class="far fa-edit"></i></button>
-                  <button value={comment?.id} onClick={handleDelete} className='action-button'><i class="far fa-trash-alt"></i></button>
+                  <button value={comment?.id} onClick={handleEditClick} className='button yellow-bg red comment-post-btn font'>Edit</button>
+                  {/* <button value={comment?.id} onClick={handleEditClick}><i class="far fa-edit"></i></button> */}
+                </td>
+                <td>
+                  <button value={comment?.id} onClick={handleDelete} className='button yellow-bg red comment-post-btn font'>Delete</button>
+                  {/* <button value={comment?.id} onClick={handleDelete}><i class="far fa-trash-alt"></i></button> */}
                 </td>
               </tr>
             ))}
