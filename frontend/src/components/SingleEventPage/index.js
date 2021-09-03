@@ -36,14 +36,11 @@ function SingleEventPage() {
         <table className='styled-table-left'>
           <thead>
             <tr>
-              <th colSpan='2' className='title-center'>Event</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
               <th>Title</th>
               <td>{event?.title}</td>
             </tr>
+          </thead>
+          <tbody>
             <tr>
               <th>Max Guests</th>
               <td>{event?.max_guests}</td>
@@ -64,14 +61,16 @@ function SingleEventPage() {
               <th>Description</th>
               <td>{event?.description}</td>
             </tr>
-            <td>
-              <Link to={`/events/${event?.id}/edit`}>
-                <button className='button yellow-bg red'>Edit</button>
-              </Link>
-            </td>
-            <td>
-              <button className='button red-bg yellow' onClick={() => handleDelete(event?.id)}>Delete</button>
-            </td>
+            <tr>
+              <td>
+              </td>
+              <td>
+                <Link to={`/events/${event?.id}/edit`}>
+                  <button className='button yellow-bg red'>Edit</button>
+                </Link>
+                <button className='button red-bg yellow' onClick={() => handleDelete(event?.id)}>Delete</button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
