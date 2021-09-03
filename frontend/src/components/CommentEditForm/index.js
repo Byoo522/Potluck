@@ -34,7 +34,7 @@ function CommentEditForm() {
         <div className='comment-event-container font log-cont'>
           <form className='comment-form'>
             <div className='new-event-header'>
-              <h1 className='font red'>Revise your comment</h1>
+              <h3 className='font red'>Revise your comment</h3>
             </div>
             <label>Prior Comment</label>
             <input
