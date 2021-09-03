@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { updateComment, getComments } from "../../store/comment";
+import './CommentEditForm.css'
 
 
 function CommentEditForm() {
@@ -28,19 +29,29 @@ function CommentEditForm() {
 
 
   return (
-    <div>
-      <h4>Revise your comment</h4>
-      <form className='comment-form'>
-        <input
-          type="text"
-          row='5'
-          placeholder={`${currentContent}`}
-          min="1"
-          required
-          value={content}
-          onChange={updateContent} />
-      </form>
-      <button onClick={handleEdit}>Save</button>
+    <div className='comment-wrapper'>
+      <div className='comment-event-page-container'>
+        <div className='comment-event-container font log-cont'>
+          <form className='comment-form'>
+            <div className='new-event-header'>
+              <h1 className='font red'>Revise your comment</h1>
+            </div>
+            <label>Prior Comment</label>
+            <input
+              type="text"
+              row='5'
+              placeholder={`${currentContent}`}
+              min="1"
+              required
+              className='new-event-input font'
+              value={content}
+              onChange={updateContent} />
+          </form>
+          <div className='new-event-submit'>
+            <button onClick={handleEdit} className='button font yellow-bg'>Save</button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

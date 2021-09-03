@@ -51,69 +51,69 @@ function EditEventForm() {
 
   return (
     <div className='edit-wrapper'>
-      <div className='edit-event-page-container' >
-        <div className='edit-event-container font log-cont'>
-          <form className='edit-form'>
-            <div className='new-event-header'>
-              <h1 className='font red'>Revision Form</h1>
-            </div>
-            <label>Title</label>
-            <input
-              type="text"
-              placeholder={`${currentEvent.title}`}
-              min="1"
-              required
-              className='new-event-input font'
-              value={title}
-              onChange={updateTitle} />
-            <label>Date</label>
-            <input
-              type="date"
-              placeholder={`${currentEvent.date}`}
-              required
-              className='new-event-input font'
-              value={date}
-              onChange={updateDate} />
-            <label>Time</label>
-            <input
-              type="time"
-              placeholder={`${currentEvent.time}`}
-              required
-              className='new-event-input font'
-              value={time}
-              onChange={updateTime} />
-            <label>Max Guests</label>
-            <input
-              type="number"
-              placeholder={`${currentEvent.max_guests}`}
-              min="1"
-              required
-              className='new-event-input font'
-              value={max_guests}
-              onChange={updateMax_Guests} />
-            <label>Location</label>
-            <input
-              type="text"
-              placeholder={`${currentEvent.location}`}
-              min="1"
-              required
-              className='new-event-input font'
-              value={location}
-              onChange={updateLocation} />
-            <label>Description</label>
-            <textarea
-              type="text"
-              placeholder={`${currentEvent.description}`}
-              required
-              className='new-event-input font'
-              value={description}
-              onChange={updateDescription} />
-            <div className='new-event-submit'>
-              <button className='button font yellow-bg' type='submit' onClick={handleUpdate}>Update</button>
-            </div>
-          </form>
-        </div>
+    <div className='edit-event-page-container' >
+      <div className='edit-event-container font log-cont'>
+        <form className='edit-form'>
+          <div className='new-event-header'>
+            <h1 className='font red'>Revision Form</h1>
+          </div>
+          <label>Title</label>
+          <input
+            type="text"
+            placeholder={`${currentEvent.title}`}
+            min="1"
+            required
+            className='new-event-input font'
+            value={title}
+            onChange={updateTitle} />
+          <label>Date</label>
+          <input
+            type="date"
+            placeholder={`${currentEvent.date}`}
+            required
+            className='new-event-input font'
+            value={date}
+            onChange={updateDate} />
+          <label>Time</label>
+          <input
+            type="time"
+            placeholder={`${currentEvent.time}`}
+            required
+            className='new-event-input font'
+            value={time}
+            onChange={updateTime} />
+          <label>Max Guests</label>
+          <input
+            type="number"
+            placeholder={`${currentEvent.max_guests}`}
+            min="1"
+            required
+            className='new-event-input font'
+            value={max_guests}
+            onChange={updateMax_Guests} />
+          <label>Location</label>
+          <input
+            type="text"
+            placeholder={`${currentEvent.location}`}
+            min="1"
+            required
+            className='new-event-input font'
+            value={location}
+            onChange={updateLocation} />
+          <label>Description</label>
+          <textarea
+            type="text"
+            placeholder={`${currentEvent.description}`}
+            required
+            className='new-event-input font'
+            value={description}
+            onChange={updateDescription} />
+          <div className='new-event-submit'>
+            <button className='button font yellow-bg' type='submit' onClick={handleUpdate}>Update</button>
+          </div>
+        </form>
       </div>
+    </div>
     </div>
   )
 }
