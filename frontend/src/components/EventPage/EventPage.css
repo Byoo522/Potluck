@@ -2,6 +2,12 @@
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url('../../Images/food-event.jpg');
   background-repeat: no-repeat;
   background-position: center;
@@ -11,13 +17,7 @@
   -o-background-size: cover;
   width: 1920px;
   height: 100vh;
-}
-
-.form-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
 }
 
 .event-form {
