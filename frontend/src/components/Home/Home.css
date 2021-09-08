@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
+  align-items: center;
   background-image: url('../../Images/potluck-landing.jpg');
   background-repeat: no-repeat;
   background-position: center;

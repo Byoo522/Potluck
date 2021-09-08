@@ -30,6 +30,7 @@ function SignupFormPage() {
 
   return (
     <>
+    <div className='signup-wrap'>
       <div className='signup-page-container'>
         <div className='signup-cont font'>
           <form onSubmit={handleSubmit} className='signup-form'>
@@ -83,9 +84,9 @@ function SignupFormPage() {
               <button className='button font yellow-bg' type="submit">Sign Up</button>
             </div>
           </form>
-
         </div>
       </div>
+    </div>
     </>
   );
 }

@@ -1,6 +1,12 @@
 .login-btn {
   width: 150px;
 }
+.login-wrap {
+ margin-top: auto;
+ display:flex;
+ justify-content: center;
+ align-content: center;
+}
 
 .login-page-container {
   display: flex;

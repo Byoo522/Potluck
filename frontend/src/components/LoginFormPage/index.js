@@ -41,6 +41,7 @@ function LoginFormPage() {
 
   return (
     <>
+    <div className='login-wrap'>
       <div className='login-page-container'>
         <div className='log-cont font'>
           <form onSubmit={handleSubmit} className='login-form'>
@@ -81,6 +82,7 @@ function LoginFormPage() {
           </form>
         </div>
       </div>
+    </div>
     </>
   );
 }
